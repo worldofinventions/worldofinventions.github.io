@@ -1,12 +1,13 @@
-# Render Blueprint: the Telegram bot (Python web service, webhook).
-# The showcase site is published by GitHub Pages (.github/workflows/pages.yml).
+# Render Blueprint: the Telegram bot + Mini App (Python web service, webhook).
+# The showcase site and the map mini app are published by GitHub Pages
+# (.github/workflows/pages.yml).
 services:
   - type: web
     name: world-of-inventions-bot
     runtime: python
     plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: python bot.py
+    startCommand: python miniapp/server.py
     healthCheckPath: /
     autoDeploy: true
     envVars:

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>World of Inventions — Mini App</title>
+  <meta name="theme-color" content="#f2ebdb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script>
+    // Lights: Telegram's color scheme first, then the remembered choice, then the system setting.
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('woi-theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.theme = t;
+    })();
+  </script>
+</head>
+<body>
+  <header class="nav is-stuck" id="app-nav">
+    <a class="nav__logo" href="#/" aria-label="World of Inventions, back to the entrance">
+      <span class="nav__token" id="nav-token"></span>
+      <span class="nav__name">World of Inventions</span>
+    </a>
+    <div class="nav__tools">
+      <span class="app-user" id="nav-user" aria-hidden="true"></span>
+    </div>
+  </header>
+
+  <main id="view"></main>
+
+  <nav class="tabbar" id="tabbar" aria-label="Sections">
+    <a class="tab is-active" href="#/" data-tab="home"><span class="tab__ico" aria-hidden="true">🏛</span><span class="tab__label">Home</span></a>
+    <a class="tab" href="#/halls" data-tab="halls"><span class="tab__ico" aria-hidden="true">🏺</span><span class="tab__label">Halls</span></a>
+    <a class="tab" href="#/catalog" data-tab="catalog"><span class="tab__ico" aria-hidden="true">📚</span><span class="tab__label">Catalogue</span></a>
+    <a class="tab" href="#/map" data-tab="map"><span class="tab__ico" aria-hidden="true">🗺</span><span class="tab__label">Map</span></a>
+    <a class="tab" href="#/more" data-tab="more"><span class="tab__ico" aria-hidden="true">☰</span><span class="tab__label">More</span></a>
+  </nav>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+  <noscript><p class="noscript">The museum needs JavaScript. Please enable it, or open the bot in Telegram.</p></noscript>
+  <script type="module" src="/src/app.ts"></script>
+</body>
+</html>
