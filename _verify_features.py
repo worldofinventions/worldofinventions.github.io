@@ -57,7 +57,7 @@ def find_buttons(message, prefix):
     if not markup:
         return []
     return [b.callback_data for row in markup.inline_keyboard for b in row
-            if b.callback_data.startswith(prefix)]
+            if (b.callback_data or "").startswith(prefix)]
 
 
 def row_count(message):
@@ -376,6 +376,11 @@ async def main():
     await h.press("map")
     check("map screen", "Invention Map" in h.screen.shown)
     check("continents shown", all(c in h.screen.shown for c in ("Europe", "North America", "Oceania")))
+    web_apps = [b.web_app.url for row in h.screen.reply_markup.inline_keyboard for b in row if b.web_app]
+    if handlers.WEBAPP_URL:
+        check("map offers the interactive Mini App map", web_apps == [handlers.WEBAPP_URL], str(web_apps))
+    else:
+        check("Mini App off: text map only", not web_apps, str(web_apps))
     countries = find_buttons(h.screen, "map:country:")
     check(f"all {len(handlers.COUNTRIES)} countries listed", len(countries) == len(handlers.COUNTRIES),
           f"{len(countries)} buttons")

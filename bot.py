@@ -6,7 +6,9 @@ import os
 from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
 
-from config import BOT_TOKEN
+from aiogram.types import MenuButtonDefault, MenuButtonWebApp, WebAppInfo
+
+from config import BOT_TOKEN, WEBAPP_URL
 from database import init_db
 from handlers import router
 
@@ -25,9 +27,25 @@ PORT = int(os.getenv("PORT", "10000"))
 KEEP_AWAKE_MINUTES = float(os.getenv("KEEP_AWAKE_MINUTES", "10"))
 
 
+async def setup_menu_button(bot: Bot):
+    """The button next to the message field: the interactive map, or Telegram's usual
+    command menu when the Mini App is turned off (WEBAPP_URL=off)."""
+    try:
+        if WEBAPP_URL:
+            await bot.set_chat_menu_button(
+                menu_button=MenuButtonWebApp(text="🗺 Map", web_app=WebAppInfo(url=WEBAPP_URL))
+            )
+        else:
+            await bot.set_chat_menu_button(menu_button=MenuButtonDefault())
+    except Exception as exc:
+        # The bot works without it; only the shortcut is missing.
+        logging.warning("Could not set the menu button: %s", exc)
+
+
 def build_dispatcher() -> Dispatcher:
     dispatcher = Dispatcher(storage=MemoryStorage())
     dispatcher.include_router(router)
+    dispatcher.startup.register(setup_menu_button)
     return dispatcher
 
 

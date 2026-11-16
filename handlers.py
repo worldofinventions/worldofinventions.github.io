@@ -14,7 +14,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import Message, CallbackQuery, BufferedInputFile, FSInputFile, InputMediaPhoto
 
-from config import MUSEUM_NAME, ADMIN_ID
+from config import MUSEUM_NAME, ADMIN_ID, WEBAPP_URL
 from database import (
     toggle_favorite, get_favorites, is_favorite, mark_exhibit_studied,
     mark_hall_opened, record_answer, record_quiz_completed, get_stats,
@@ -855,13 +855,17 @@ def build_map_text() -> str:
         lines.append(f"🌐 International / several countries — {counts['International']}")
         lines.append("")
     lines.append("Inventions that involve several countries are counted for each of them.")
+    if WEBAPP_URL:
+        lines.append("")
+        lines.append("🗺 Open the interactive map to tap countries on a real map and compare them century by century.")
     return "\n".join(lines)
 
 
 @router.callback_query(F.data == "map")
 async def show_map(callback: CallbackQuery):
     await show_text(
-        callback.message, build_map_text(), reply_markup=countries_keyboard(COUNTRIES, COUNTRY_LABELS)
+        callback.message, build_map_text(),
+        reply_markup=countries_keyboard(COUNTRIES, COUNTRY_LABELS, webapp_url=WEBAPP_URL),
     )
     await callback.answer()
 

@@ -1,6 +1,6 @@
 from math import ceil
 
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
 
 ITEMS_PER_PAGE = 8
 FAVORITE_ADD_TEXT = "⭐ Add Favorite"
@@ -235,13 +235,19 @@ def quiz_result_keyboard_continue(next_index: int) -> InlineKeyboardMarkup:
 def countries_keyboard(
     countries: list[str],
     labels: dict | None = None,
+    webapp_url: str | None = None,
 ) -> InlineKeyboardMarkup:
+    """Country buttons of the text map. With `webapp_url`, the first row opens the
+    interactive map as a Telegram Mini App; the text map below still works as before."""
     labels = labels or {}
     buttons = [
         btn(labels.get(country, country), f"map:country:{country}")
         for country in countries
     ]
-    rows = chunk(buttons, 2)
+    rows = []
+    if webapp_url:
+        rows.append([InlineKeyboardButton(text="🗺 Open Interactive Map", web_app=WebAppInfo(url=webapp_url))])
+    rows.extend(chunk(buttons, 2))
     rows.append(nav_row())
     return InlineKeyboardMarkup(inline_keyboard=rows)
 

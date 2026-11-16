@@ -12,7 +12,14 @@ const max = Math.max(...COUNTRY_COUNTS.values());
 const level = (c: string) => 1 + Math.min(3, Math.floor((Math.sqrt(COUNTRY_COUNTS.get(c) ?? 0) / Math.sqrt(max)) * 3.999));
 const plural = (n: number) => `${n} ${n === 1 ? 'exhibit' : 'exhibits'}`;
 
-export function initMap(): void {
+export interface MapOptions {
+  /** Extra blocks under the list of a selected country (the Telegram Mini App adds a comparison there). */
+  panelExtra?: (country: string) => Node[];
+  /** Called whenever a country is selected. */
+  onSelect?: (country: string) => void;
+}
+
+export function initMap(options: MapOptions = {}): void {
   const root = $('#map');
   const panel = h('div.atlas__panel', { 'aria-live': 'polite' });
   const tip = h('div.atlas__tip', { role: 'tooltip', hidden: true });
@@ -32,7 +39,9 @@ export function initMap(): void {
       title,
       h('p.atlas__sub', {}, `${plural(items.length)} connected with this place.`),
       h('ul.atlas__items', {}, ...items.map((item) =>
-        h('li', {}, h('button', { type: 'button', 'data-exhibit': item.id }, h('span.atlas__no', {}, pad3(item.no)), h('span', {}, item.name), h('span.atlas__year', {}, item.year))))));
+        h('li', {}, h('button', { type: 'button', 'data-exhibit': item.id }, h('span.atlas__no', {}, pad3(item.no)), h('span', {}, item.name), h('span.atlas__year', {}, item.year))))),
+      ...(options.panelExtra?.(country) ?? []));
+    options.onSelect?.(country);
     if (focusPanel) title.focus({ preventScroll: true });
   };
 

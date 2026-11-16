@@ -9,6 +9,7 @@ An educational Telegram bot built with Python and aiogram 3.
 - **This Day in History** – inventions and discoveries linked to today's date (the nearest dates are shown when the calendar has none)
 - **How It Works** – a simple explanation of the principle behind every invention
 - **Invention Map** – browse exhibits by country of origin
+- **Interactive Map (Telegram Mini App)** – the site's world map opens inside Telegram: tap countries, compare two of them century by century, and tap an exhibit to get its card in the chat. It opens from the "🗺 Open Interactive Map" button on the map screen and from the "🗺 Map" menu button next to the message field. The page is `site/miniapp.html`; the bot reads its address from `WEBAPP_URL` (default `https://worldofinventions.github.io/miniapp.html`). Set `WEBAPP_URL=off` to run the previous version of the bot with the text map only
 - **Search & Filters** – filter by country, hall and period, and search by keyword inside the chosen filters
 - Suggestions and feedback forwarded to the configured admin
 - Project team information

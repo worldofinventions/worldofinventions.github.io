@@ -16,4 +16,7 @@ services:
         sync: false
       - key: ADMIN_ID
         sync: false
+      # Optional: "off" turns the Mini App map off (text map only).
+      - key: WEBAPP_URL
+        sync: false
 
