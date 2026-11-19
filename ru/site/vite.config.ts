@@ -20,7 +20,16 @@ function museumHtml(): Plugin {
         const sorted = inventions.filter((i) => year(i.year) > 0).sort((a, b) => year(a.year) - year(b.year));
         const first = sorted[0];
         const last = sorted[sorted.length - 1];
+        // Русские числительные: 1 экспонат, 2 экспоната, 5 экспонатов.
+        const plural = (n: number, one: string, few: string, many: string) =>
+          `${n} ${n % 10 === 1 && n % 100 !== 11 ? one : n % 10 >= 2 && n % 10 <= 4 && !(n % 100 >= 12 && n % 100 <= 14) ? few : many}`;
+        const nHalls = Object.keys(bot.halls).length;
         const tokens: Record<string, string> = {
+          EXHIBITS_N: plural(inventions.length, 'экспонат', 'экспоната', 'экспонатов'),
+          HALLS_N: plural(nHalls, 'зал', 'зала', 'залов'),
+          HALLS_IN: `${nHalls} ${nHalls % 10 === 1 && nHalls % 100 !== 11 ? 'зале' : 'залах'}`,
+          EVENTS_N: plural(read('history.json').length, 'событие', 'события', 'событий'),
+          QUESTIONS_N: plural(bot.quiz.length, 'вопрос', 'вопроса', 'вопросов'),
           MUSEUM: bot.museumName,
           N_EXHIBITS: String(inventions.length),
           N_HALLS: String(Object.keys(bot.halls).length),

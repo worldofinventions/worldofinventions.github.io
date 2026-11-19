@@ -4,18 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>__MUSEUM__: музей в Telegram</title>
-  <meta name="description" content="__MUSEUM__: образовательный Telegram-бот Ломоносовской школы-пансиона: __N_EXHIBITS__ экспонатов в __N_HALLS__ залах, от __YEAR_MIN__ до __YEAR_MAX__ года. Залы, викторина и «Этот день в истории».">
+  <meta name="description" content="__MUSEUM__: образовательный Telegram-бот Ломоносовской школы-пансиона: __EXHIBITS_N__ в __HALLS_IN__, от __YEAR_MIN__ до __YEAR_MAX__ года. Залы, викторина и «Этот день в истории».">
   <meta name="theme-color" content="#f2ebdb" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
   <meta property="og:type" content="website">
   <meta property="og:title" content="__MUSEUM__: музей в Telegram">
-  <meta property="og:description" content="__N_EXHIBITS__ экспонатов, __N_HALLS__ зала, от __YEAR_MIN__ до __YEAR_MAX__ года. Откройте бота или пройдите по залам прямо в браузере.">
+  <meta property="og:description" content="__EXHIBITS_N__, __HALLS_N__, от __YEAR_MIN__ до __YEAR_MAX__ года. Откройте бота или пройдите по залам прямо в браузере.">
   <meta property="og:image" content="__OG_IMAGE__">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="__MUSEUM__: музей в Telegram">
-  <meta name="twitter:description" content="__N_EXHIBITS__ экспонатов, __N_HALLS__ зала, __YEAR_MIN__–__YEAR_MAX__.">
+  <meta name="twitter:description" content="__EXHIBITS_N__, __HALLS_N__, __YEAR_MIN__–__YEAR_MAX__.">
   <meta name="twitter:image" content="__OG_IMAGE__">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./apple-touch-icon.png">
@@ -63,7 +63,7 @@
       <div class="hero__copy">
         <h1 id="hero-title">Музей изобретений русских людей</h1>
         <p class="hero__line">От глаголицы 863 года до графена 2004-го: изобретения и открытия, связанные с историей России, в одном Telegram-боте.</p>
-        <p class="hero__sub">__N_EXHIBITS__ экспонатов в __N_HALLS__ залах. Проект учеников Ломоносовской школы-пансиона. Экспонаты, викторина и календарь дат работают прямо в чате.</p>
+        <p class="hero__sub">__EXHIBITS_N__ в __HALLS_IN__. Проект учеников Ломоносовской школы-пансиона. Экспонаты, викторина и календарь дат работают прямо в чате.</p>
         <div class="hero__cta">
           <a class="btn btn--primary" href="__BOT_URL__" target="_blank" rel="noopener"><span>Открыть в Telegram</span><svg class="icon-arrow" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 13 13 3M6 3h7v7" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
           <a class="btn" href="#halls">Пройти по залам</a>
@@ -87,7 +87,7 @@
       <div class="wrap section-head">
         <p class="eyebrow">Постоянная экспозиция</p>
         <h2 id="halls-title">У каждого изобретения свой зал, у каждого зала свои века</h2>
-        <p class="lead">__N_HALLS__ зала стоят на одной линии времени. Прокручивайте страницу, и пол повезёт вас вбок, от берестяных грамот к космическим станциям. Нажмите на любой постамент, чтобы открыть витрину.</p>
+        <p class="lead">__HALLS_N__ стоят на одной линии времени. Прокручивайте страницу, и пол повезёт вас вбок, от берестяных грамот к космическим станциям. Нажмите на любой постамент, чтобы открыть витрину.</p>
       </div>
       <div class="halls__stage" id="halls-stage">
         <div class="halls__hud">
@@ -104,7 +104,7 @@
       <div class="wrap">
         <div class="section-head">
           <p class="eyebrow">Картотека</p>
-          <h2 id="catalogue-title">Все __N_EXHIBITS__ экспонатов в одном ящике</h2>
+          <h2 id="catalogue-title">Все __EXHIBITS_N__ в одном ящике</h2>
           <p class="lead">Напишите слово или сузьте поиск по залу, стране и периоду в любом сочетании. Это «Поиск и фильтры» из бота, только для мыши: те же поля и те же правила.</p>
           <p class="section-head__bot"><a class="btn btn--ghost btn--small" href="__BOT_URL__?start=catalog" target="_blank" rel="noopener">Каталог в боте</a> <a class="btn btn--ghost btn--small" href="__BOT_URL__?start=search" target="_blank" rel="noopener">Поиск в боте</a></p>
         </div>
@@ -119,7 +119,7 @@
         <div class="section-head">
           <p class="eyebrow">Этот день в истории</p>
           <h2 id="today-title">Что случилось в этот день</h2>
-          <p class="lead">В календаре __N_EVENTS__ изобретений, открытий и событий с точными датами. Дата берётся с вашего устройства. Если на сегодня записей нет, календарь, как и бот, показывает ближайшие даты до и после.</p>
+          <p class="lead">В календаре __EVENTS_N__ с точными датами: изобретения, открытия и важные даты. Дата берётся с вашего устройства. Если на сегодня записей нет, календарь, как и бот, показывает ближайшие даты до и после.</p>
           <p class="section-head__bot"><a class="btn btn--ghost btn--small" href="__BOT_URL__?start=today" target="_blank" rel="noopener">Этот день в боте</a></p>
         </div>
         <div class="today__grid" id="today"></div>
@@ -136,7 +136,7 @@
         <div class="section-head">
           <p class="eyebrow">Викторина</p>
           <h2 id="quiz-title">Пять вопросов на прощание</h2>
-          <p class="lead">Вопросы случайно выбираются из настоящего банка бота (__N_QUESTIONS__ вопросов), варианты перемешаны.</p>
+          <p class="lead">Вопросы случайно выбираются из настоящего банка бота (__QUESTIONS_N__), варианты перемешаны.</p>
           <p class="section-head__bot"><a class="btn btn--ghost btn--small" href="__BOT_URL__?start=quiz" target="_blank" rel="noopener">Раунд из 10 вопросов в боте</a></p>
         </div>
         <div id="quiz"></div>
