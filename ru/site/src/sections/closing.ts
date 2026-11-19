@@ -38,7 +38,7 @@ export function initFooter(): void {
       credits),
     h('details', {}, h('summary', {}, `Источники текстов (${seen.size})`), sources),
     h('details', {}, h('summary', {}, 'О сайте'),
-      h('p', {}, 'Шрифты Literata, Onest и IBM Plex Mono (SIL Open Font License). Флаги: Twemoji, CC BY 4.0. Контуры карты: Natural Earth, общественное достояние.')));
+      h('p', {}, 'Шрифты Literata, Onest и IBM Plex Mono (SIL Open Font License). Флаги: Twemoji, CC BY 4.0.')));
 
   const meta = $('#footer-meta');
   meta.append(h('span', {}, `© ${new Date().getFullYear()} ${MUSEUM_NAME}. Образовательный проект Ломоносовской школы-пансиона.`));

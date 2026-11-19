@@ -17,7 +17,6 @@ import { initHero } from './sections/hero';
 import { initLedger } from './sections/ledger';
 import { initHalls } from './sections/halls';
 import { initExplorer } from './sections/explorer';
-import { initMap } from './sections/map';
 import { initToday } from './sections/today';
 import { initQuiz } from './sections/quiz';
 import { initFeatures } from './sections/features';
@@ -67,7 +66,7 @@ run('theme', initTheme);
 run('nav', initNav);
 run('hero', initHero);
 const later: [string, () => void][] = [
-  ['ledger', initLedger], ['halls', initHalls], ['catalogue', initExplorer], ['map', initMap], ['this day', initToday],
+  ['ledger', initLedger], ['halls', initHalls], ['catalogue', initExplorer], ['this day', initToday],
   ['quiz', initQuiz], ['guide', initFeatures], ['workshop', initHood], ['team', initTeam], ['footer', initFooter], ['modal', initModal],
 ];
 const next = () => {

@@ -86,6 +86,6 @@ export default defineConfig({
     target: 'es2020',
     cssMinify: true,
     // index.html is the site; miniapp.html is the map the bot opens as a Telegram Mini App.
-    rollupOptions: { input: { main: 'index.html', miniapp: 'miniapp.html' } },
+    rollupOptions: { input: { main: 'index.html' } },
   },
 });

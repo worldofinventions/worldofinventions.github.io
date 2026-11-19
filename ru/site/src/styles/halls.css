@@ -191,3 +191,9 @@
   .plinth__btn { grid-template-columns: 96px minmax(0, 1fr); gap: var(--s-3); }
   .plinth__year { margin-left: calc(96px + var(--s-3)); }
 }
+
+/* Русские названия залов длиннее английских: жирные прописные заголовки залов 2 и 3
+   уменьшены, чтобы «Средневековые» и «Промышленный» помещались в колонку зала. */
+.room[data-hall="2"] .room__name { font-size: clamp(1.5rem, 0.8rem + 1.5vw, 2.2rem); }
+.room[data-hall="3"] .room__name { font-size: clamp(1.4rem, 0.8rem + 1.4vw, 2.05rem); letter-spacing: 0.02em; }
+.room__name { hyphens: manual; }

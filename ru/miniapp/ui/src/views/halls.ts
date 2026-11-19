@@ -9,13 +9,6 @@ import { exhibitsWord } from '../bot';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Русская азбука Морзе: телеграф Шиллинга стоит в зале 3, лента бежит по его стене.
-const MORSE: Record<string, string> = {
-  а: '.-', б: '-...', в: '.--', г: '--.', д: '-..', е: '.', ё: '.', ж: '...-', з: '--..', и: '..', й: '.---', к: '-.-', л: '.-..',
-  м: '--', н: '-.', о: '---', п: '.--.', р: '.-.', с: '...', т: '-', у: '..-', ф: '..-.', х: '....', ц: '-.-.', ч: '---.',
-  ш: '----', щ: '--.-', ъ: '--.--', ы: '-.--', ь: '-..-', э: '..-..', ю: '..--', я: '.-.-',
-};
-const toMorse = (text: string) => text.toLowerCase().split('').map((c) => (c === ' ' ? '/' : MORSE[c] ?? '')).filter(Boolean).join(' ').replace(/\./g, '•').replace(/-/g, '▬');
 
 const ASIDES = [
   'Осторожно, на полу воск от свечей.',
@@ -56,7 +49,6 @@ export function mountHalls(root: HTMLElement): void {
             exhibitImage(item, 'thumb'),
             h('span.plinth__cap', {}, h('span.plinth__no', {}, `№ ${pad3(item.no)}`), h('span.plinth__name', {}, item.name), h('span.sr-only', {}, `, ${item.year}`))),
           h('span.plinth__year', { 'aria-hidden': 'true' }, item.year))));
-    if (id === HALL_IDS[2]) wall.dataset.tape = `${toMorse(hall.name)}   `.repeat(10);
     const room = h('section.room', { 'data-hall': id, 'aria-labelledby': `room-${id}` },
       h('div.room__intro', {},
         h('p.room__no', {}, `Зал ${id}`),

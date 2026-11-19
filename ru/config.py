@@ -14,7 +14,8 @@ MUSEUM_NAME = "Музей изобретений русских людей"
 
 # Интерактивная карта (ru/site/miniapp.html на GitHub Pages) как Telegram Mini App.
 # RU_WEBAPP_URL=off — бот работает только с текстовой картой.
-_WEBAPP_RAW = os.getenv("RU_WEBAPP_URL", "https://worldofinventions.github.io/ru/miniapp.html").strip()
+# Отдельной страницы с картой на русском сайте нет: карта открывается в Mini App музея.
+_WEBAPP_RAW = os.getenv("RU_WEBAPP_URL", "off").strip()
 WEBAPP_URL = None if _WEBAPP_RAW.lower() in {"", "off", "no", "false", "0"} else _WEBAPP_RAW
 
 # Экосистема: соседний англоязычный музей и сайты обоих музеев.
