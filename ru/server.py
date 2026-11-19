@@ -70,10 +70,16 @@ def get_bot(telegram_disabled: bool) -> Bot | None:
     return _bot
 
 
+_dispatcher: Dispatcher | None = None
+
+
 def build_dispatcher() -> Dispatcher:
-    dispatcher = Dispatcher(storage=MemoryStorage())
-    dispatcher.include_router(museum.router)
-    return dispatcher
+    """Один диспетчер на процесс: роутер aiogram можно подключить только один раз."""
+    global _dispatcher
+    if _dispatcher is None:
+        _dispatcher = Dispatcher(storage=MemoryStorage())
+        _dispatcher.include_router(museum.router)
+    return _dispatcher
 
 
 # ------------------------------------------------------------------ авторизация Telegram

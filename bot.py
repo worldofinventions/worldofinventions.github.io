@@ -105,6 +105,15 @@ def run_webhook():
         return web.Response(text=f"World of Inventions bot is running. Version {version}, keep-awake {keep}.")
 
     app.router.add_get("/", health)
+    # The Russian-language museum of the ecosystem (@lshpdigitalmuseumbot) lives
+    # under /ru/ in the same process when RU_BOT_TOKEN is set (see ru/server.py).
+    try:
+        from ru import server as ru_server
+        if ru_server.enabled():
+            ru_server.mount(app, WEBHOOK_BASE_URL, False)
+            logging.info("The Russian museum is mounted under /ru/.")
+    except Exception:
+        logging.exception("The Russian museum could not be loaded; World of Inventions keeps running.")
     SimpleRequestHandler(dispatcher=dispatcher, bot=bot, secret_token=WEBHOOK_SECRET).register(app, path=WEBHOOK_PATH)
     setup_application(app, dispatcher, bot=bot)
     web.run_app(app, host="0.0.0.0", port=PORT)
