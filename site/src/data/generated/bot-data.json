@@ -790,7 +790,7 @@
     },
     "quiz": {
       "file": "handlers.py",
-      "line": 1023,
+      "line": 1027,
       "code": "round_size = min(QUIZ_ROUND_SIZE, len(QUIZ))\nquestion_order = random.sample(range(len(QUIZ)), k=round_size)\n# Each question gets its own shuffled option order. We store original option\n# indexes so the bot can still identify the correct answer after shuffling.\noption_orders = []\nfor question_index in question_order:\n    order = list(range(len(QUIZ[question_index][\"options\"])))\n    random.shuffle(order)\n    option_orders.append(order)"
     },
     "stats": {

@@ -520,6 +520,19 @@ async def on_cleanup(app: web.Application) -> None:
             pass
 
 
+def mount_russian_museum(app: web.Application) -> None:
+    try:
+        from ru import server as ru_server
+    except Exception:
+        log.exception("The Russian museum (ru/) could not be loaded; World of Inventions keeps running.")
+        return
+    if not (ru_server.enabled() or TELEGRAM_DISABLED):
+        log.info("RU_BOT_TOKEN is not set: the Russian museum is not mounted.")
+        return
+    ru_server.mount(app, WEBHOOK_BASE_URL, TELEGRAM_DISABLED)
+    log.info("The Russian museum is mounted under /ru/.")
+
+
 def build_app() -> web.Application:
     app = web.Application(middlewares=[api_middleware])
     app.router.add_get("/healthz", health)
@@ -543,6 +556,12 @@ def build_app() -> web.Application:
     app.router.add_post("/api/quiz/answer", api_quiz_answer)
     app.router.add_post("/api/quiz/next", api_quiz_next)
     app.router.add_post("/api/feedback", api_feedback)
+
+    # The Russian-language museum of the same ecosystem (@lshpdigitalmuseumbot):
+    # its mini app, API and webhook live under /ru/. It is mounted before the
+    # catch-all static route below, and only when RU_BOT_TOKEN is set or the
+    # server runs without Telegram (local UI development).
+    mount_russian_museum(app)
 
     app.router.add_get("/", index)
     app.router.add_static("/exhibits/", EXHIBIT_IMAGES_DIR, name="exhibit-images")

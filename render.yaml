@@ -20,4 +20,8 @@ services:
       # Optional: "off" turns the Mini App map off (text map only).
       - key: WEBAPP_URL
         sync: false
+      # The Russian-language museum of the ecosystem (@lshpdigitalmuseumbot, ru/).
+      # Without it only World of Inventions runs. It shares ADMIN_ID for feedback.
+      - key: RU_BOT_TOKEN
+        sync: false
 

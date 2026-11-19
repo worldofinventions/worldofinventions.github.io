@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>__MUSEUM__: музей в Telegram</title>
+  <meta name="description" content="__MUSEUM__: образовательный Telegram-бот Ломоносовской школы-пансиона: __N_EXHIBITS__ экспонатов в __N_HALLS__ залах, от __YEAR_MIN__ до __YEAR_MAX__ года. Залы, викторина и «Этот день в истории».">
+  <meta name="theme-color" content="#f2ebdb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="__MUSEUM__: музей в Telegram">
+  <meta property="og:description" content="__N_EXHIBITS__ экспонатов, __N_HALLS__ зала, от __YEAR_MIN__ до __YEAR_MAX__ года. Откройте бота или пройдите по залам прямо в браузере.">
+  <meta property="og:image" content="__OG_IMAGE__">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="__MUSEUM__: музей в Telegram">
+  <meta name="twitter:description" content="__N_EXHIBITS__ экспонатов, __N_HALLS__ зала, __YEAR_MIN__–__YEAR_MAX__.">
+  <meta name="twitter:image" content="__OG_IMAGE__">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <script>
+    // Lights: remembered choice first, the system setting otherwise. Runs before paint.
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('ru-museum-theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.theme = t;
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Перейти к экспозиции</a>
+
+  <header class="nav" id="nav">
+    <a class="nav__logo" href="#top" aria-label="__MUSEUM__, на главную">
+      <span class="nav__token" id="nav-token"></span>
+      <span class="nav__name">__MUSEUM__</span>
+    </a>
+    <nav class="nav__links" id="nav-links" aria-label="Разделы">
+      <a href="#halls">Залы</a>
+      <a href="#catalogue">Каталог</a>
+      <a href="#atlas">Карта</a>
+      <a href="#this-day">Этот день</a>
+      <a href="#quiz-room">Викторина</a>
+      <a href="#visitor-guide">Путеводитель</a>
+      <a href="#workshop">Мастерская</a>
+      <a href="__WORLD_SITE_URL__" lang="en">World of Inventions</a>
+    </nav>
+    <div class="nav__tools">
+      <button class="lamp" id="theme-toggle" type="button" aria-pressed="false">
+        <span class="lamp__plate" aria-hidden="true"><span class="lamp__rocker"></span></span>
+        <span class="lamp__text">Свет</span>
+      </button>
+      <a class="btn btn--primary btn--small" href="__BOT_URL__" target="_blank" rel="noopener">Открыть в Telegram</a>
+      <button class="nav__menu" id="nav-menu" type="button" aria-expanded="false" aria-controls="nav-links">Меню</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ───────────────────────────── Entrance -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero__gears" aria-hidden="true"></div>
+      <div class="hero__copy">
+        <h1 id="hero-title">Музей изобретений русских людей</h1>
+        <p class="hero__line">От глаголицы 863 года до графена 2004-го: изобретения и открытия, связанные с историей России, в одном Telegram-боте.</p>
+        <p class="hero__sub">__N_EXHIBITS__ экспонатов в __N_HALLS__ залах. Проект учеников Ломоносовской школы-пансиона. Экспонаты, викторина и календарь дат работают прямо в чате.</p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="__BOT_URL__" target="_blank" rel="noopener"><span>Открыть в Telegram</span><svg class="icon-arrow" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 13 13 3M6 3h7v7" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
+          <a class="btn" href="#halls">Пройти по залам</a>
+        </div>
+        <p class="hero__ref">Фонд ЛШП · __YEAR_MIN__–__YEAR_MAX__ · вход свободный</p>
+      </div>
+      <div class="hero__phone" id="phone"></div>
+    </section>
+
+    <!-- ───────────────────────────── The collection in numbers -->
+    <section class="ledger" aria-labelledby="ledger-title">
+      <div class="wrap">
+        <h2 class="ledger__title" id="ledger-title">Инвентарная книга</h2>
+        <p class="ledger__sub">Посчитано по файлам данных бота при сборке этой страницы.</p>
+        <ol class="ledger__rows" id="ledger-rows"></ol>
+      </div>
+    </section>
+
+    <!-- ───────────────────────────── The Halls -->
+    <section class="halls" id="halls" aria-labelledby="halls-title">
+      <div class="wrap section-head">
+        <p class="eyebrow">Постоянная экспозиция</p>
+        <h2 id="halls-title">У каждого изобретения свой зал, у каждого зала свои века</h2>
+        <p class="lead">__N_HALLS__ зала стоят на одной линии времени. Прокручивайте страницу, и пол повезёт вас вбок, от берестяных грамот к космическим станциям. Нажмите на любой постамент, чтобы открыть витрину.</p>
+      </div>
+      <div class="halls__stage" id="halls-stage">
+        <div class="halls__hud">
+          <p class="halls__now" id="halls-hud-name"></p>
+          <div class="halls__jumps" id="halls-jumps" role="group" aria-label="Перейти в зал"></div>
+        </div>
+        <div class="halls__track" id="halls-track"></div>
+        <div class="halls__progress" id="halls-progress" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────────── Catalogue -->
+    <section class="explorer" id="catalogue" aria-labelledby="catalogue-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Картотека</p>
+          <h2 id="catalogue-title">Все __N_EXHIBITS__ экспонатов в одном ящике</h2>
+          <p class="lead">Напишите слово или сузьте поиск по залу, стране и периоду в любом сочетании. Это «Поиск и фильтры» из бота, только для мыши: те же поля и те же правила.</p>
+          <p class="section-head__bot"><a class="btn btn--ghost btn--small" href="__BOT_URL__?start=catalog" target="_blank" rel="noopener">Каталог в боте</a> <a class="btn btn--ghost btn--small" href="__BOT_URL__?start=search" target="_blank" rel="noopener">Поиск в боте</a></p>
+        </div>
+        <div id="explorer"></div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────────── Map -->
+    <section class="atlas" id="atlas" aria-labelledby="atlas-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Карта изобретений</p>
+          <h2 id="atlas-title">Где появились изобретения</h2>
+          <p class="lead">Выберите страну на карте или в списке. Страной считается место, где изобретение создали или впервые применили. Яблочков получил патент в Париже, Зворыкин и Сикорский работали в США.</p>
+          <p class="section-head__bot"><a class="btn btn--ghost btn--small" href="__BOT_URL__?start=map" target="_blank" rel="noopener">Карта в боте</a></p>
+        </div>
+        <div class="atlas__grid" id="map"></div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────────── This Day -->
+    <section class="today" id="this-day" aria-labelledby="today-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Этот день в истории</p>
+          <h2 id="today-title">Что случилось в этот день</h2>
+          <p class="lead">В календаре __N_EVENTS__ изобретений, открытий и событий с точными датами. Дата берётся с вашего устройства. Если на сегодня записей нет, календарь, как и бот, показывает ближайшие даты до и после.</p>
+          <p class="section-head__bot"><a class="btn btn--ghost btn--small" href="__BOT_URL__?start=today" target="_blank" rel="noopener">Этот день в боте</a></p>
+        </div>
+        <div class="today__grid" id="today"></div>
+        <details class="rule">
+          <summary>Правило «ближайших дат», как оно записано в боте</summary>
+          <div id="nearest-rule"></div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ───────────────────────────── Quiz -->
+    <section class="quiz" id="quiz-room" aria-labelledby="quiz-title">
+      <div class="wrap quiz__grid">
+        <div class="section-head">
+          <p class="eyebrow">Викторина</p>
+          <h2 id="quiz-title">Пять вопросов на прощание</h2>
+          <p class="lead">Вопросы случайно выбираются из настоящего банка бота (__N_QUESTIONS__ вопросов), варианты перемешаны.</p>
+          <p class="section-head__bot"><a class="btn btn--ghost btn--small" href="__BOT_URL__?start=quiz" target="_blank" rel="noopener">Раунд из 10 вопросов в боте</a></p>
+        </div>
+        <div id="quiz"></div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────────── Features -->
+    <section class="guide" id="visitor-guide" aria-labelledby="guide-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Путеводитель</p>
+          <h2 id="guide-title">Что умеет бот, экран за экраном</h2>
+          <p class="lead">Всё, что посетитель может сделать в одном чате. Выберите пункт, и рядом появится экран, который бот присылает на самом деле.</p>
+        </div>
+        <figure class="compare">
+          <figcaption>Почему в чате чисто</figcaption>
+          <div class="compare__col">
+            <p class="compare__who">Бот, который на каждый экран присылает новое сообщение</p>
+            <ol><li>Главное меню</li><li>Меню музея</li><li>Залы</li><li>Список зала</li><li>Экспонат</li></ol>
+            <p class="compare__sum">Пять сообщений, которые придётся листать назад.</p>
+          </div>
+          <div class="compare__col compare__col--ours">
+            <p class="compare__who">__MUSEUM__</p>
+            <ol><li>Экспонат <span>заменён на месте 4 раза</span></li></ol>
+            <p class="compare__sum">Одно сообщение, и это всегда тот экран, где вы сейчас.</p>
+          </div>
+        </figure>
+        <div class="guide__grid" id="guide"></div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────────── Under the hood -->
+    <section class="hood" id="workshop" aria-labelledby="hood-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Мастерская, только для сотрудников</p>
+          <h2 id="hood-title">За стеновой панелью</h2>
+          <p class="lead">Обычные модули Python, контент в JSON и один файл SQLite. Бот живёт в том же процессе, что и World of Inventions, под адресом /ru/. Код ниже скопирован из репозитория скриптом сборки вместе с номерами строк.</p>
+        </div>
+        <h3 class="hood__h">Архитектура</h3>
+        <div class="hood__arch" id="arch"></div>
+        <h3 class="hood__h">База данных, как её создаёт database.py</h3>
+        <div class="hood__schema" id="schema"></div>
+        <h3 class="hood__h">Решения, достойные таблички</h3>
+        <div class="hood__decisions" id="decisions"></div>
+        <h3 class="hood__h">Технологии</h3>
+        <ul class="stack">
+          <li><b>Python 3.12</b><span>язык</span></li>
+          <li><b>aiogram 3</b><span>Telegram-фреймворк, webhook</span></li>
+          <li><b>FSM, MemoryStorage</b><span>поиск, отзывы, викторина</span></li>
+          <li><b>SQLite</b><span>избранное и статистика</span></li>
+          <li><b>JSON</b><span>контент, проверка при запуске</span></li>
+          <li><b>aiohttp</b><span>сервер Mini App и webhook</span></li>
+          <li><b>Render</b><span>хостинг вместе с World of Inventions</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ───────────────────────────── Team -->
+    <section class="team" id="team" aria-labelledby="team-title">
+      <div class="wrap">
+        <div class="plaque">
+          <span class="plaque__screw" aria-hidden="true"></span><span class="plaque__screw" aria-hidden="true"></span>
+          <span class="plaque__screw" aria-hidden="true"></span><span class="plaque__screw" aria-hidden="true"></span>
+          <h2 id="team-title">Кураторы выставки</h2>
+          <div id="team-plaque"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────────── Exit through the bot -->
+    <section class="visit" id="visit" aria-labelledby="visit-title">
+      <div class="wrap">
+        <h2 id="visit-title">Музей открыт круглосуточно</h2>
+        <p class="lead">Эта страница работает как витрина. Избранное, ваша статистика и полная викторина живут в боте. Изобретения со всего мира собраны в соседнем музее, <a href="__WORLD_SITE_URL__" lang="en">World of Inventions</a> (на английском).</p>
+        <a class="btn btn--primary btn--large" href="__BOT_URL__" target="_blank" rel="noopener"><span>Войти в музей</span><svg class="icon-arrow" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3 13 13 3M6 3h7v7" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__credits" id="footer-credits"></div>
+      <p class="footer__meta" id="footer-meta"></p>
+    </div>
+  </footer>
+
+  <noscript><p class="noscript">Экспонаты на этой странице строятся из данных бота с помощью JavaScript. Включите его или откройте бота в Telegram.</p></noscript>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

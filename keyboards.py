@@ -2,6 +2,8 @@ from math import ceil
 
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
 
+from config import RU_BOT_URL
+
 ITEMS_PER_PAGE = 8
 FAVORITE_ADD_TEXT = "⭐ Add Favorite"
 FAVORITE_REMOVE_TEXT = "💔 Remove Favorite"
@@ -32,7 +34,13 @@ def main_keyboard() -> InlineKeyboardMarkup:
         [btn("📅 This Day", "history:today"), btn("🗺 Map", "map")],
         [btn("🔎 Search", "search"), btn("🧠 Quiz", "quiz:start")],
         [btn("💬 Feedback", "feedback"), btn("👥 Team", "team")],
+        ecosystem_row(),
     ])
+
+
+def ecosystem_row() -> list:
+    """The sister museum of the ecosystem: Russian inventions, in Russian."""
+    return [InlineKeyboardButton(text="🇷🇺 Museum of Russian Inventions (in Russian)", url=RU_BOT_URL)]
 
 
 def museum_keyboard() -> InlineKeyboardMarkup:

@@ -1,0 +1,362 @@
+{
+  "glagolitsa": {
+    "file": "Kiev Missal 1.jpg",
+    "width": 960,
+    "height": 1246,
+    "page": "https://commons.wikimedia.org/wiki/File:Kiev_Missal_1.jpg",
+    "artist": "автор неизвестен",
+    "license": "Public domain",
+    "licenseUrl": null
+  },
+  "kirillitsa": {
+    "file": "Ostromir Gospel 1.jpg",
+    "width": 650,
+    "height": 800,
+    "page": "https://commons.wikimedia.org/wiki/File:Ostromir_Gospel_1.jpg",
+    "artist": "deacon Gregory",
+    "license": "Public domain",
+    "licenseUrl": null
+  },
+  "monoxyl": {
+    "file": "Kievan Rus and trade routes in 10th century (ru).svg",
+    "width": 960,
+    "height": 1042,
+    "page": "https://commons.wikimedia.org/wiki/File:Kievan_Rus_and_trade_routes_in_10th_century_(ru).svg",
+    "artist": "Nikolay Omonov",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  "novgorod-pavements": {
+    "file": "Kontsy VN.jpg",
+    "width": 960,
+    "height": 1008,
+    "page": "https://commons.wikimedia.org/wiki/File:Kontsy_VN.jpg",
+    "artist": "Center_of_Veliky_Novgorod.jpg: Loginname derivative work: Дар Ветер (talk)",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  "ostromir": {
+    "file": "Ostromirovo.jpg",
+    "width": 596,
+    "height": 405,
+    "page": "https://commons.wikimedia.org/wiki/File:Ostromirovo.jpg",
+    "artist": null,
+    "license": "Public domain",
+    "licenseUrl": null
+  },
+  "beresta": {
+    "file": "Birch bark No 202 in Novgorod Art and History Museum.jpg",
+    "width": 960,
+    "height": 640,
+    "page": "https://commons.wikimedia.org/wiki/File:Birch_bark_No_202_in_Novgorod_Art_and_History_Museum.jpg",
+    "artist": "Александр Сигачёв",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  "gusli": {
+    "file": "Musical instruments AncRus GIM.jpg",
+    "width": 960,
+    "height": 1673,
+    "page": "https://commons.wikimedia.org/wiki/File:Musical_instruments_AncRus_GIM.jpg",
+    "artist": "Лапоть",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  "apostol": {
+    "file": "Apostol 1564 Frontispis.jpg",
+    "width": 960,
+    "height": 705,
+    "page": "https://commons.wikimedia.org/wiki/File:Apostol_1564_Frontispis.jpg",
+    "artist": "Иван Фёдоров, Пётр Мстиславец",
+    "license": "Public domain",
+    "licenseUrl": null
+  },
+  "tsar-cannon": {
+    "file": "Tsar Cannon, Tsar Pushka, Kremlin, Moscow, Russia.jpg",
+    "width": 960,
+    "height": 640,
+    "page": "https://commons.wikimedia.org/wiki/File:Tsar_Cannon,_Tsar_Pushka,_Kremlin,_Moscow,_Russia.jpg",
+    "artist": "Vyacheslav Argenberg",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0"
+  },
+  "schoty": {
+    "file": "Schoty abacus.jpg",
+    "width": 919,
+    "height": 1064,
+    "page": "https://commons.wikimedia.org/wiki/File:Schoty_abacus.jpg",
+    "artist": null,
+    "license": "Public domain",
+    "licenseUrl": null
+  },
+  "nartov-lathe": {
+    "file": "Hermitage hall 399 - 04 - Turning Lathe.jpg",
+    "width": 960,
+    "height": 1280,
+    "page": "https://commons.wikimedia.org/wiki/File:Hermitage_hall_399_-_04_-_Turning_Lathe.jpg",
+    "artist": "Netelo",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "lomonosov-telescope": {
+    "file": "Ночезрительная труба.jpg",
+    "width": 324,
+    "height": 261,
+    "page": "https://commons.wikimedia.org/wiki/File:%D0%9D%D0%BE%D1%87%D0%B5%D0%B7%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%82%D1%80%D1%83%D0%B1%D0%B0.jpg",
+    "artist": "Medium",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "polzunov": {
+    "file": "Steam engine of Ivan Polzunov.JPG",
+    "width": 960,
+    "height": 1493,
+    "page": "https://commons.wikimedia.org/wiki/File:Steam_engine_of_Ivan_Polzunov.JPG",
+    "artist": "Brücke-Osteuropa",
+    "license": "Public domain",
+    "licenseUrl": null
+  },
+  "kulibin-bridge": {
+    "file": "Kulibin bridge.jpg",
+    "width": 800,
+    "height": 243,
+    "page": "https://commons.wikimedia.org/wiki/File:Kulibin_bridge.jpg",
+    "artist": null,
+    "license": "Public domain",
+    "licenseUrl": null
+  },
+  "cherepanov": {
+    "file": "Model of the Cherepanov locomotive.jpg",
+    "width": 960,
+    "height": 1280,
+    "page": "https://commons.wikimedia.org/wiki/File:Model_of_the_Cherepanov_locomotive.jpg",
+    "artist": "Harveyqs",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "schilling-telegraph": {
+    "file": "Schilling one-needle telegraph.png",
+    "width": 954,
+    "height": 812,
+    "page": "https://commons.wikimedia.org/wiki/File:Schilling_one-needle_telegraph.png",
+    "artist": "John Joseph Fahie (1846-1934)",
+    "license": "Public domain",
+    "licenseUrl": null
+  },
+  "pirogov-cast": {
+    "file": "Ilya Repin Portrait of the Surgeon Nikolay Pirogov 1881.jpg",
+    "width": 960,
+    "height": 1179,
+    "page": "https://commons.wikimedia.org/wiki/File:Ilya_Repin_Portrait_of_the_Surgeon_Nikolay_Pirogov_1881.jpg",
+    "artist": "Ilya Repin",
+    "license": "Public domain",
+    "licenseUrl": null
+  },
+  "mendeleev-table": {
+    "file": "Mendeleev's periodic table (1869 year).jpg",
+    "width": 619,
+    "height": 784,
+    "page": "https://commons.wikimedia.org/wiki/File:Mendeleev%27s_periodic_table_(1869_year).jpg",
+    "artist": "Dmitri Mendeleev",
+    "license": "Public domain",
+    "licenseUrl": null
+  },
+  "lodygin-lamp": {
+    "file": "Lodygin lamp.jpg",
+    "width": 200,
+    "height": 207,
+    "page": "https://commons.wikimedia.org/wiki/File:Lodygin_lamp.jpg",
+    "artist": null,
+    "license": "Public domain",
+    "licenseUrl": null
+  },
+  "yablochkov-candle": {
+    "file": "Yablochkov candles illuminating Avenue de l'Opera ca1878.jpg",
+    "width": 780,
+    "height": 480,
+    "page": "https://commons.wikimedia.org/wiki/File:Yablochkov_candles_illuminating_Avenue_de_l%27Opera_ca1878.jpg",
+    "artist": "A. Rintel (from partly legible signature in lower left",
+    "license": "Public domain",
+    "licenseUrl": null
+  },
+  "benardos-welding": {
+    "file": "Benardos N.N.jpg",
+    "width": 200,
+    "height": 298,
+    "page": "https://commons.wikimedia.org/wiki/File:Benardos_N.N.jpg",
+    "artist": "автор неизвестен",
+    "license": "Public domain",
+    "licenseUrl": null
+  },
+  "dolivo-motor": {
+    "file": "Dolivo-Dobrowolsky 3.jpg",
+    "width": 667,
+    "height": 900,
+    "page": "https://commons.wikimedia.org/wiki/File:Dolivo-Dobrowolsky_3.jpg",
+    "artist": "автор неизвестен",
+    "license": "Public domain",
+    "licenseUrl": null
+  },
+  "popov-radio": {
+    "file": "Popov coherer radio receiver.jpg",
+    "width": 784,
+    "height": 385,
+    "page": "https://commons.wikimedia.org/wiki/File:Popov_coherer_radio_receiver.jpg",
+    "artist": "Gustav Partheil",
+    "license": "Public domain",
+    "licenseUrl": null
+  },
+  "shukhov-tower": {
+    "file": "First Shukhov Tower Nizhny Novgorod 1896.jpg",
+    "width": 960,
+    "height": 830,
+    "page": "https://commons.wikimedia.org/wiki/File:First_Shukhov_Tower_Nizhny_Novgorod_1896.jpg",
+    "artist": "Andrei Osipovich Karelin",
+    "license": "Public domain",
+    "licenseUrl": null
+  },
+  "prokudin-gorsky": {
+    "file": "Prokudin-Gorskii-12.jpg",
+    "width": 960,
+    "height": 875,
+    "page": "https://commons.wikimedia.org/wiki/File:Prokudin-Gorskii-12.jpg",
+    "artist": "автор неизвестен",
+    "license": "Public domain",
+    "licenseUrl": null
+  },
+  "russky-vityaz": {
+    "file": "Sikorsky Russky Vityaz (Le Grand).jpg",
+    "width": 960,
+    "height": 640,
+    "page": "https://commons.wikimedia.org/wiki/File:Sikorsky_Russky_Vityaz_(Le_Grand).jpg",
+    "artist": "автор неизвестен",
+    "license": "Public domain",
+    "licenseUrl": null
+  },
+  "parachute-rk1": {
+    "file": "Памятный знак испытанию РК-1.JPG",
+    "width": 960,
+    "height": 1280,
+    "page": "https://commons.wikimedia.org/wiki/File:%D0%9F%D0%B0%D0%BC%D1%8F%D1%82%D0%BD%D1%8B%D0%B9_%D0%B7%D0%BD%D0%B0%D0%BA_%D0%B8%D1%81%D0%BF%D1%8B%D1%82%D0%B0%D0%BD%D0%B8%D1%8E_%D0%A0%D0%9A-1.JPG",
+    "artist": "Khanson",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  "theremin": {
+    "file": "Leon Theremin and his etherphone.jpg",
+    "width": 960,
+    "height": 849,
+    "page": "https://commons.wikimedia.org/wiki/File:Leon_Theremin_and_his_etherphone.jpg",
+    "artist": "The New York Times",
+    "license": "Public domain",
+    "licenseUrl": null
+  },
+  "iconoscope": {
+    "file": "Zworykin and iconoscope.jpg",
+    "width": 374,
+    "height": 423,
+    "page": "https://commons.wikimedia.org/wiki/File:Zworykin_and_iconoscope.jpg",
+    "artist": "Hugo Gernsback",
+    "license": "Public domain",
+    "licenseUrl": null
+  },
+  "sikorsky-helicopter": {
+    "file": "Igor Sikorsky 300.jpg",
+    "width": 600,
+    "height": 446,
+    "page": "https://commons.wikimedia.org/wiki/File:Igor_Sikorsky_300.jpg",
+    "artist": "автор неизвестен",
+    "license": "Public domain",
+    "licenseUrl": null
+  },
+  "obninsk-npp": {
+    "file": "Obninsk-AES.jpg",
+    "width": 960,
+    "height": 720,
+    "page": "https://commons.wikimedia.org/wiki/File:Obninsk-AES.jpg",
+    "artist": "A.Savin",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  "sputnik-1": {
+    "file": "Sputnik 1.jpg",
+    "width": 960,
+    "height": 1291,
+    "page": "https://commons.wikimedia.org/wiki/File:Sputnik_1.jpg",
+    "artist": "U.S. Air Force photo",
+    "license": "Public domain",
+    "licenseUrl": null
+  },
+  "icebreaker-lenin": {
+    "file": "Ледокол ЛЕНИН.jpg",
+    "width": 960,
+    "height": 615,
+    "page": "https://commons.wikimedia.org/wiki/File:%D0%9B%D0%B5%D0%B4%D0%BE%D0%BA%D0%BE%D0%BB_%D0%9B%D0%95%D0%9D%D0%98%D0%9D.jpg",
+    "artist": "FynjyRepmvby",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "tokamak": {
+    "file": "Tokamak T-1.jpg",
+    "width": 900,
+    "height": 658,
+    "page": "https://commons.wikimedia.org/wiki/File:Tokamak_T-1.jpg",
+    "artist": "автор неизвестен",
+    "license": "Public domain",
+    "licenseUrl": null
+  },
+  "vostok": {
+    "file": "Vostok spacecraft.jpg",
+    "width": 960,
+    "height": 693,
+    "page": "https://commons.wikimedia.org/wiki/File:Vostok_spacecraft.jpg",
+    "artist": "The original uploader was HPH at German Wikipedia.",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/"
+  },
+  "lunokhod-1": {
+    "file": "Soviet moonrover.JPG",
+    "width": 960,
+    "height": 720,
+    "page": "https://commons.wikimedia.org/wiki/File:Soviet_moonrover.JPG",
+    "artist": "Petar Milošević",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  "tetris": {
+    "file": "Alexey Pajitnov January 2008.jpg",
+    "width": 960,
+    "height": 720,
+    "page": "https://commons.wikimedia.org/wiki/File:Alexey_Pajitnov_January_2008.jpg",
+    "artist": "Jordi Sabaté",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+  },
+  "mir": {
+    "file": "Mir on 12 June 1998edit1.jpg",
+    "width": 960,
+    "height": 919,
+    "page": "https://commons.wikimedia.org/wiki/File:Mir_on_12_June_1998edit1.jpg",
+    "artist": "Original image: NASA/Crew of STS-91Retouched image: Thegreenj",
+    "license": "Public domain",
+    "licenseUrl": null
+  },
+  "graphene": {
+    "file": "Graphen.jpg",
+    "width": 960,
+    "height": 768,
+    "page": "https://commons.wikimedia.org/wiki/File:Graphen.jpg",
+    "artist": "AlexanderAlUS",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  "galvanoplastika": {
+    "file": "Moritz Hermann von Jacobi 1856.jpg",
+    "width": 600,
+    "height": 819,
+    "page": "https://commons.wikimedia.org/wiki/File:Moritz_Hermann_von_Jacobi_1856.jpg",
+    "artist": "Rudolph Hoffmann",
+    "license": "Public domain",
+    "licenseUrl": null
+  }
+}

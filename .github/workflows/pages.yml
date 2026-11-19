@@ -1,4 +1,4 @@
-# Builds the showcase site (site/) and publishes it on GitHub Pages on every push to main.
+# Builds the showcase sites (site/ and ru/site/ under /ru/) and publishes them on GitHub Pages on every push to main.
 name: Site on GitHub Pages
 
 on:
@@ -27,11 +27,23 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: site/package-lock.json
+          cache-dependency-path: |
+            site/package-lock.json
+            ru/site/package-lock.json
       - run: npm ci
       - run: npm run build
         env:
           SITE_URL: https://worldofinventions.github.io
+      # The Russian-language museum of the same ecosystem: built from ru/site and
+      # published under /ru/ (https://worldofinventions.github.io/ru/).
+      - run: npm ci
+        working-directory: ru/site
+      - run: npm run build
+        working-directory: ru/site
+        env:
+          RU_SITE_URL: https://worldofinventions.github.io/ru
+      - run: cp -r ru/site/dist site/dist/ru
+        working-directory: .
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site/dist

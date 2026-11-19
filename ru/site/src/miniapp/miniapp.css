@@ -1,0 +1,37 @@
+/* The Telegram Mini App: the invention map alone, laid out for a phone held upright. */
+.tg__main { padding: 16px 16px calc(24px + env(safe-area-inset-bottom)); max-width: 1100px; margin-inline: auto; }
+.tg__head { margin-bottom: var(--s-4); }
+.tg__head h1 { margin-top: 6px; font: 400 clamp(1.6rem, 1.2rem + 2vw, 2.4rem)/1.05 var(--font-display); }
+.tg__lead { margin-top: 8px; font-size: var(--fs-1); color: var(--ink-2); max-width: 60ch; }
+
+/* On the site a phone gets only the list; here the sheet is the point, so it always shows. */
+.tg .atlas__sheet { display: block; padding: 8px; }
+.tg .atlas__panel { margin-top: var(--s-4); padding: var(--s-4); }
+.tg .atlas__items { max-height: none; }
+.tg .atlas__grid { gap: var(--s-4); }
+.tg .atlas__ledger button { min-height: 40px; }
+@media (max-width: 719px) {
+  /* the title block and compass are decoration; the inset (England, Scotland, France) is not */
+  .tg .atlas__titleblock { display: none; }
+  .tg .atlas__lower { grid-template-columns: 1fr; margin-top: 8px; padding-top: 8px; }
+  .tg .atlas__tip { display: none; }
+  .tg .atlas__insetbox { max-width: 340px; width: 100%; margin-inline: auto; }
+}
+
+/* comparison of two countries */
+.tgc { margin-top: var(--s-5); padding-top: var(--s-4); border-top: 1px solid var(--line-2); }
+.tgc__title { font: 500 var(--fs-0)/1 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); }
+.tgc__chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--s-3); }
+.tgc__chip { min-height: 36px; padding: 6px 12px; border: 1px solid var(--line-2); border-radius: 999px; background: none; color: var(--ink); font: inherit; font-size: var(--fs-1); }
+.tgc__chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.tgc__legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: var(--s-4); font-size: var(--fs-1); }
+.tgc__key { display: inline-flex; align-items: center; gap: 6px; }
+.tgc__key::before { content: ""; width: 12px; height: 12px; background: var(--c); }
+.tgc__key--a, .tgc__bar.a { --c: var(--accent); }
+.tgc__key--b, .tgc__bar.b { --c: var(--brass); }
+.tgc__rows { display: grid; gap: 10px; margin-top: var(--s-3); }
+.tgc__row { display: grid; grid-template-columns: 9.5ch 1fr; gap: 10px; align-items: center; }
+.tgc__period { font: 400 var(--fs-0)/1.2 var(--font-mono); color: var(--ink-2); }
+.tgc__bars { display: grid; gap: 3px; }
+.tgc__bar { display: flex; align-items: center; gap: 6px; height: 14px; font: 500 var(--fs-0)/1 var(--font-mono); }
+.tgc__bar::before { content: ""; height: 100%; width: var(--w); min-width: 2px; background: var(--c); }

@@ -13,5 +13,8 @@ MUSEUM_NAME = "World of Inventions"
 _WEBAPP_RAW = os.getenv("WEBAPP_URL", "https://worldofinventions.github.io/miniapp.html").strip()
 WEBAPP_URL = None if _WEBAPP_RAW.lower() in {"", "off", "no", "false", "0"} else _WEBAPP_RAW
 
+# The sister bot of the ecosystem: the Russian-language museum (ru/ package).
+RU_BOT_URL = os.getenv("RU_BOT_URL", "https://t.me/lshpdigitalmuseumbot").strip()
+
 if not BOT_TOKEN:
     raise RuntimeError("BOT_TOKEN is missing. Add your bot token to the .env file.")

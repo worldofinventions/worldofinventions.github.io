@@ -47,5 +47,18 @@ export function mountMore(root: HTMLElement): void {
         tile('#/favorites', '⭐', 'My Favorites', `${state.favorites.size} saved`),
         tile('#/stats', '📊', 'Statistics', 'your personal progress'),
         tile('#/feedback', '💬', 'Feedback', 'suggest & improve'),
-        tile('#/team', '👥', 'Project Team', 'the curators')))));
+        tile('#/team', '👥', 'Project Team', 'the curators'),
+        sisterTile()))));
+}
+
+/** The sister museum of the ecosystem: Russian inventions, in Russian (@lshpdigitalmuseumbot). */
+function sisterTile(): HTMLElement {
+  const url = 'https://t.me/lshpdigitalmuseumbot';
+  const tg = (window as any).Telegram?.WebApp ?? null;
+  return h('a.tile', {
+    href: url, target: '_blank', rel: 'noopener', lang: 'ru',
+    onclick: (e: Event) => { if (tg?.openTelegramLink) { e.preventDefault(); tg.openTelegramLink(url); } },
+  },
+    h('span.tile__ico', { 'aria-hidden': 'true' }, '🇷🇺'),
+    h('span.tile__text', {}, h('b', {}, 'Музей изобретений русских людей'), h('small', { lang: 'en' }, 'the sister museum, in Russian')));
 }

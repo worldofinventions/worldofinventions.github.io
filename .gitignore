@@ -8,3 +8,7 @@ data/museum.db
 data/_verify_test.db
 data/*.db-journal
 *.pptx
+ru/data/*.db
+ru/data/*.db-journal
+node_modules/
+dist/
