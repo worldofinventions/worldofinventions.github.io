@@ -455,8 +455,8 @@ async def set_bot_profile(bot: Bot) -> None:
             BotCommand(command="help", description="Что умеет бот"),
         ])
         await bot.set_my_description(
-            "Музей изобретений русских людей — образовательный проект Ломоносовской школы-пансиона. "
-            f"{len(museum.INVENTIONS)} экспонатов в четырёх залах: от глаголицы до графена. "
+            "Музей изобретений русских людей: образовательный проект Ломоносовской школы-пансиона. "
+            f"{len(museum.INVENTIONS)} {museum.exhibits_word(len(museum.INVENTIONS))} в четырёх залах, от глаголицы до графена. "
             "Викторина, карта, «Этот день в истории» и избранное. Нажмите «Запустить»."
         )
         await bot.set_my_short_description(
