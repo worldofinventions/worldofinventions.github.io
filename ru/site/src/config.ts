@@ -6,7 +6,7 @@
 export const BOT_URL = 'https://t.me/lshpdigitalmuseumbot';
 
 /** Соседний музей экосистемы: World of Inventions (на английском) — бот и сайт. */
-export const WORLD_BOT_URL = 'https://t.me/jdjsbehenbot';
+export const WORLD_BOT_URL = 'https://t.me/worldofinventions_app';
 export const WORLD_SITE_URL = 'https://worldofinventions.github.io/';
 
 /**

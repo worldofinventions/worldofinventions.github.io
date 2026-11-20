@@ -5,7 +5,7 @@
 
 export const BOT_URL = 'https://t.me/lshpdigitalmuseumbot';
 /** Соседний музей экосистемы: World of Inventions, на английском. */
-export const WORLD_BOT_URL = 'https://t.me/jdjsbehenbot';
+export const WORLD_BOT_URL = 'https://t.me/worldofinventions_app';
 export const SITE_URL = 'https://worldofinventions.github.io/ru/';
 
 export const botStartUrl = (payload?: string): string => (payload ? `${BOT_URL}?start=${encodeURIComponent(payload)}` : BOT_URL);

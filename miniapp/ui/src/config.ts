@@ -3,7 +3,7 @@
 //  hints; everything else lives inside the app itself.
 // ──────────────────────────────────────────────────────────────────────────
 
-export const BOT_URL = 'https://t.me/jdjsbehenbot';
+export const BOT_URL = 'https://t.me/worldofinventions_app';
 
 export const botStartUrl = (payload?: string): string => (payload ? `${BOT_URL}?start=${encodeURIComponent(payload)}` : BOT_URL);
 

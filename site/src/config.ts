@@ -3,7 +3,7 @@
 // ──────────────────────────────────────────────────────────────────────────
 
 // The bot's Telegram address. Every "Open in Telegram" button on the site reads it.
-export const BOT_URL = 'https://t.me/jdjsbehenbot';
+export const BOT_URL = 'https://t.me/worldofinventions_app';
 
 /**
  * A link that opens the bot and sends "/start <payload>", so the bot goes straight

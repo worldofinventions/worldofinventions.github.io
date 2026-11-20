@@ -432,6 +432,28 @@ async def api_feedback(request: web.Request) -> web.Response:
     return web.json_response({"ok": True})
 
 
+async def api_map_send(request: web.Request) -> web.Response:
+    """Sends the bot's map screen to the visitor's chat. Its first button opens the
+    separate interactive map mini app (WEBAPP_URL, site/miniapp.html)."""
+    user = resolve_user(request)
+    bot = get_bot()
+    if bot is None:
+        return json_error(503, "Telegram is disabled in this run, so the map cannot be sent.")
+    if not museum.WEBAPP_URL:
+        return json_error(503, "The interactive map is turned off on this server.")
+    from keyboards import countries_keyboard
+    try:
+        await bot.send_message(
+            user["id"],
+            museum.build_map_text(),
+            reply_markup=countries_keyboard(museum.COUNTRIES, museum.COUNTRY_LABELS, webapp_url=museum.WEBAPP_URL),
+        )
+    except Exception as exc:
+        log.warning("Could not send the map to %s: %s", user["id"], exc)
+        return json_error(502, "The bot could not write to you. Open the chat with the bot once and try again.")
+    return web.json_response({"ok": True})
+
+
 async def health(_request: web.Request) -> web.Response:
     mode = "disabled" if TELEGRAM_DISABLED else ("webhook" if WEBHOOK_BASE_URL else "polling")
     version = os.getenv("RENDER_GIT_COMMIT", "local")[:7]
@@ -491,6 +513,12 @@ async def on_startup(app: web.Application) -> None:
             drop_pending_updates=False,
         )
         await set_museum_menu_button(bot)
+        from branding import EN_AVATAR, EN_NAME, apply_branding
+        await apply_branding(
+            bot, EN_NAME,
+            "Inventions that changed the world, from telescopes to the web. Sister museum in Russian: @lshpdigitalmuseumbot",
+            EN_AVATAR,
+        )
         if KEEP_AWAKE_MINUTES > 0:
             app["keep_awake_task"] = asyncio.create_task(keep_awake())
         log.info("Webhook mode: %s%s", WEBHOOK_BASE_URL, WEBHOOK_PATH)
@@ -556,6 +584,7 @@ def build_app() -> web.Application:
     app.router.add_post("/api/quiz/answer", api_quiz_answer)
     app.router.add_post("/api/quiz/next", api_quiz_next)
     app.router.add_post("/api/feedback", api_feedback)
+    app.router.add_post("/api/map/send", api_map_send)
 
     # The Russian-language museum of the same ecosystem (@lshpdigitalmuseumbot):
     # its mini app, API and webhook live under /ru/. It is mounted before the

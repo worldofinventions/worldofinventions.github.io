@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640">
+<defs>
+  <path id="top" d="M 92 320 A 228 228 0 0 1 548 320"/>
+  <path id="bottom" d="M 70 320 A 250 250 0 0 0 570 320"/>
+</defs>
+<rect width="640" height="640" fill="#5a2210"/>
+<g stroke="#f2ebdb" stroke-opacity="0.07" stroke-width="1"><line x1="0" y1="0" x2="0" y2="640" /><line x1="0" y1="0" x2="640" y2="0" /><line x1="32" y1="0" x2="32" y2="640" /><line x1="0" y1="32" x2="640" y2="32" /><line x1="64" y1="0" x2="64" y2="640" /><line x1="0" y1="64" x2="640" y2="64" /><line x1="96" y1="0" x2="96" y2="640" /><line x1="0" y1="96" x2="640" y2="96" /><line x1="128" y1="0" x2="128" y2="640" /><line x1="0" y1="128" x2="640" y2="128" /><line x1="160" y1="0" x2="160" y2="640" /><line x1="0" y1="160" x2="640" y2="160" /><line x1="192" y1="0" x2="192" y2="640" /><line x1="0" y1="192" x2="640" y2="192" /><line x1="224" y1="0" x2="224" y2="640" /><line x1="0" y1="224" x2="640" y2="224" /><line x1="256" y1="0" x2="256" y2="640" /><line x1="0" y1="256" x2="640" y2="256" /><line x1="288" y1="0" x2="288" y2="640" /><line x1="0" y1="288" x2="640" y2="288" /><line x1="320" y1="0" x2="320" y2="640" /><line x1="0" y1="320" x2="640" y2="320" /><line x1="352" y1="0" x2="352" y2="640" /><line x1="0" y1="352" x2="640" y2="352" /><line x1="384" y1="0" x2="384" y2="640" /><line x1="0" y1="384" x2="640" y2="384" /><line x1="416" y1="0" x2="416" y2="640" /><line x1="0" y1="416" x2="640" y2="416" /><line x1="448" y1="0" x2="448" y2="640" /><line x1="0" y1="448" x2="640" y2="448" /><line x1="480" y1="0" x2="480" y2="640" /><line x1="0" y1="480" x2="640" y2="480" /><line x1="512" y1="0" x2="512" y2="640" /><line x1="0" y1="512" x2="640" y2="512" /><line x1="544" y1="0" x2="544" y2="640" /><line x1="0" y1="544" x2="640" y2="544" /><line x1="576" y1="0" x2="576" y2="640" /><line x1="0" y1="576" x2="640" y2="576" /><line x1="608" y1="0" x2="608" y2="640" /><line x1="0" y1="608" x2="640" y2="608" /><line x1="640" y1="0" x2="640" y2="640" /><line x1="0" y1="640" x2="640" y2="640" /></g>
+<circle cx="320" cy="320" r="292" fill="none" stroke="#d2ab57" stroke-width="5"/>
+<circle cx="320" cy="320" r="278" fill="none" stroke="#d2ab57" stroke-width="1.6" opacity="0.8"/>
+<circle cx="320" cy="282" r="112" fill="none" stroke="#f2ebdb" stroke-width="7"/>
+<line x1="248.3" y1="201.4" x2="391.7" y2="201.4" stroke="#f2ebdb" stroke-width="2.4" opacity="0.75"/>
+<line x1="221.5" y1="241.7" x2="418.5" y2="241.7" stroke="#f2ebdb" stroke-width="2.4" opacity="0.75"/>
+<line x1="214.0" y1="282.0" x2="426.0" y2="282.0" stroke="#f2ebdb" stroke-width="2.4" opacity="0.75"/>
+<line x1="221.5" y1="322.3" x2="418.5" y2="322.3" stroke="#f2ebdb" stroke-width="2.4" opacity="0.75"/>
+<line x1="248.3" y1="362.6" x2="391.7" y2="362.6" stroke="#f2ebdb" stroke-width="2.4" opacity="0.75"/>
+<ellipse cx="320" cy="282" rx="37.0" ry="108" fill="none" stroke="#f2ebdb" stroke-width="2.4" opacity="0.75"/>
+<ellipse cx="320" cy="282" rx="78.4" ry="108" fill="none" stroke="#f2ebdb" stroke-width="2.4" opacity="0.75"/>
+<line x1="320" y1="174" x2="320" y2="390" stroke="#f2ebdb" stroke-width="2.4" opacity="0.75"/>
+<path d="M 290 432 L 290 322 Q 290 292 308 304 Q 320 268 332 304 Q 350 292 350 322 L 350 432" fill="none" stroke="#ffd27a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 258 374 Q 270 410 270 432 L 370 432 Q 370 410 382 374" fill="none" stroke="#f2ebdb" stroke-width="7" stroke-linejoin="round"/>
+<rect x="264" y="441" width="112" height="10" rx="5" fill="#f2ebdb"/>
+<rect x="268" y="456" width="104" height="10" rx="5" fill="#f2ebdb"/>
+<rect x="272" y="471" width="96" height="10" rx="5" fill="#f2ebdb"/>
+<rect x="276" y="486" width="88" height="10" rx="5" fill="#f2ebdb"/>
+<path d="M 292 502 L 348 502 L 334 518 L 306 518 Z" fill="#f2ebdb"/>
+<text font-family="Literata" font-size="35" font-weight="560" letter-spacing="3" fill="#f2ebdb" text-anchor="middle"><textPath href="#top" startOffset="50%">МИР ИЗОБРЕТЕНИЙ</textPath></text>
+<text font-family="PlexCyr" font-size="26" letter-spacing="9" fill="#d2ab57" text-anchor="middle"><textPath href="#bottom" startOffset="50%" dominant-baseline="hanging">РОССИЯ</textPath></text>
+</svg>

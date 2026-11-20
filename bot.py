@@ -60,70 +60,14 @@ async def run_polling():
         await bot.session.close()
 
 
-def run_webhook():
-    from aiohttp import web
-    from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
-
-    bot = Bot(token=BOT_TOKEN)
-    dispatcher = build_dispatcher()
-
-    async def on_startup(bot: Bot):
-        # Updates that arrived while the service was asleep are kept and handled now.
-        await bot.set_webhook(
-            f"{WEBHOOK_BASE_URL}{WEBHOOK_PATH}",
-            secret_token=WEBHOOK_SECRET,
-            drop_pending_updates=False,
-        )
-        print(f"World of Inventions is running (webhook {WEBHOOK_BASE_URL}{WEBHOOK_PATH})!")
-
-    async def keep_awake():
-        import aiohttp
-        await asyncio.sleep(60)
-        async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=30)) as session:
-            while True:
-                try:
-                    async with session.get(f"{WEBHOOK_BASE_URL}/") as response:
-                        logging.info("keep-awake ping: HTTP %s", response.status)
-                except Exception as exc:
-                    logging.warning("keep-awake ping failed: %s", exc)
-                await asyncio.sleep(KEEP_AWAKE_MINUTES * 60)
-
-    async def start_keep_awake(bot: Bot):
-        if KEEP_AWAKE_MINUTES > 0:
-            # Kept on the dispatcher so the task is not garbage-collected.
-            dispatcher["keep_awake_task"] = asyncio.create_task(keep_awake())
-
-    dispatcher.startup.register(on_startup)
-    dispatcher.startup.register(start_keep_awake)
-
-    app = web.Application()
-
-    async def health(_request):
-        # Render sets RENDER_GIT_COMMIT: shows which version of the code is live.
-        version = os.getenv("RENDER_GIT_COMMIT", "local")[:7]
-        keep = f"every {KEEP_AWAKE_MINUTES:g} min" if KEEP_AWAKE_MINUTES > 0 else "off"
-        return web.Response(text=f"World of Inventions bot is running. Version {version}, keep-awake {keep}.")
-
-    app.router.add_get("/", health)
-    # The Russian-language museum of the ecosystem (@lshpdigitalmuseumbot) lives
-    # under /ru/ in the same process when RU_BOT_TOKEN is set (see ru/server.py).
-    try:
-        from ru import server as ru_server
-        if ru_server.enabled():
-            ru_server.mount(app, WEBHOOK_BASE_URL, False)
-            logging.info("The Russian museum is mounted under /ru/.")
-    except Exception:
-        logging.exception("The Russian museum could not be loaded; World of Inventions keeps running.")
-    SimpleRequestHandler(dispatcher=dispatcher, bot=bot, secret_token=WEBHOOK_SECRET).register(app, path=WEBHOOK_PATH)
-    setup_application(app, dispatcher, bot=bot)
-    web.run_app(app, host="0.0.0.0", port=PORT)
-
-
 def main():
     logging.basicConfig(level=logging.INFO)
     init_db()
     if WEBHOOK_BASE_URL:
-        run_webhook()
+        # On a host the full Mini App server takes over: it serves the bot's webhook,
+        # the Mini App and its API, the Russian museum under /ru/ and keep-awake.
+        from miniapp.server import main as serve_miniapp
+        serve_miniapp()
     else:
         asyncio.run(run_polling())
 

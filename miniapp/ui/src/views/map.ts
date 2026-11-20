@@ -1,6 +1,7 @@
 // The invention map: the site's engraved atlas, ported as an app view.
 import { COUNTRIES, COUNTRY_INFO, COUNTRY_COUNTS, CONTINENTS, countryItems, pad3 } from '../data';
-import { h, s, whenVisible } from '../ui';
+import { h, s, whenVisible, toast } from '../ui';
+import { api } from '../api';
 
 interface Place { d: string; x: number; y: number; clip?: string }
 interface Sheet { width: number; height: number; land: string; graticule: string; places: Record<string, Place> }
@@ -17,7 +18,8 @@ export function mountMap(root: HTMLElement): void {
       h('p.eyebrow', {}, 'Invention map'),
       h('h2', {}, 'Where the ideas came from'),
       h('p.lead', {}, 'Pick a country on the sheet or in the list. An invention that belongs to several countries is counted for each of them, exactly as the bot counts.'),
-      grid)));
+      grid,
+      sendMapRow())));
 
   const panel = h('div.atlas__panel', { 'aria-live': 'polite' });
   const tip = h('div.atlas__tip', { role: 'tooltip', hidden: true });
@@ -120,4 +122,26 @@ function compass(cx: number, cy: number): SVGElement {
   }
   g.append(s('text', { y: -50, 'text-anchor': 'middle' }, 'N'));
   return g;
+}
+
+/** The big interactive map is a separate mini app. The bot sends it to the chat as a
+ *  message with an "Open Interactive Map" button, so it can be reopened later. */
+function sendMapRow(): HTMLElement {
+  const tg = (window as any).Telegram?.WebApp ?? null;
+  const button = h('button.btn', { type: 'button' }, 'Send the full-screen map to chat') as HTMLButtonElement;
+  button.addEventListener('click', async () => {
+    button.disabled = true;
+    try {
+      await api.sendMap();
+      toast('The map is in your chat with the bot');
+      if (tg?.close) setTimeout(() => tg.close(), 900);
+    } catch (err) {
+      toast(err instanceof Error ? err.message : 'The map could not be sent');
+    } finally {
+      button.disabled = false;
+    }
+  });
+  return h('div.map-send', {},
+    button,
+    h('p.map-send__note', {}, 'The bot sends a message with the “Open Interactive Map” button. It stays in the chat.'));
 }

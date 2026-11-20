@@ -3,7 +3,7 @@
 // Source of truth: handlers.py and keyboards.py. If a text changes there,
 // change it here too (static menus, HALLS, QUIZ etc. are extracted automatically).
 import {
-  BOT, MUSEUM_NAME, HALLS, HALL_IDS, INVENTIONS, HISTORY, COUNTRIES, COUNTRY_INFO, CONTINENTS, COUNTRY_COUNTS,
+  BOT, MUSEUM_NAME, HALLS, HALL_IDS, INVENTIONS, HISTORY, COUNTRIES,
   MONTH_NAMES, PERIODS, countryLabel, hallItems,
   type Exhibit, type HistoryEvent, type Keyboard, type Btn, type QuizQuestion,
 } from './data';
@@ -212,24 +212,6 @@ export function historyScreen(today: DayRef, byId: Map<string, Exhibit>): Screen
     text: result.text,
     keyboard: [...result.related.map((id) => [btn(`🏺 Экспонат: ${byId.get(id)!.name}`, `item:${id}`)]), [HOME]],
   };
-}
-
-// ------------------------------------------------------------------ invention map
-export function mapScreen(): Screen {
-  const lines = ['🗺 Карта изобретений', '', 'Где появились наши изобретения? Нажмите на страну, чтобы увидеть её экспонаты.', ''];
-  for (const [continent, icon] of CONTINENTS) {
-    const members = COUNTRIES.filter((c) => COUNTRY_INFO[c][1] === continent);
-    if (members.length) {
-      lines.push(`${icon} ${continent}`);
-      lines.push(...members.map((c) => `${COUNTRY_INFO[c][0]} ${c} — ${COUNTRY_COUNTS.get(c)}`));
-      lines.push('');
-    }
-  }
-  lines.push('Страной считается место, где изобретение создали или впервые применили. Многие русские изобретатели работали за границей.');
-  const buttons = COUNTRIES.map((c) => btn(countryLabel(c), `map:country:${c}`));
-  const rows: Keyboard = [];
-  for (let i = 0; i < buttons.length; i += 2) rows.push(buttons.slice(i, i + 2));
-  return { text: lines.join('\n'), keyboard: [...rows, NAV_ROW] };
 }
 
 // ------------------------------------------------------------------ search & filters

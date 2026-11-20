@@ -54,6 +54,7 @@ export const api = {
   quizAnswer: (choice: number): Promise<QuizVerdict> =>
     request('/api/quiz/answer', { method: 'POST', body: JSON.stringify({ choice }) }),
   quizNext: (): Promise<QuizQuestion> => request('/api/quiz/next', { method: 'POST' }),
+  sendMap: (): Promise<{ ok: boolean }> => request('/api/map/send', { method: 'POST' }),
   sendFeedback: (message: string): Promise<{ ok: boolean }> =>
     request('/api/feedback', { method: 'POST', body: JSON.stringify({ message }) }),
 };

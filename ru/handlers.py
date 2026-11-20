@@ -14,7 +14,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import Message, CallbackQuery, BufferedInputFile, FSInputFile, InputMediaPhoto
 
-from .config import MUSEUM_NAME, ADMIN_ID, WEBAPP_URL, SITE_URL
+from .config import MUSEUM_NAME, ADMIN_ID, SITE_URL
 from .database import (
     toggle_favorite, get_favorites, is_favorite, mark_exhibit_studied,
     mark_hall_opened, record_answer, record_quiz_completed, get_stats,
@@ -23,8 +23,8 @@ from .keyboards import (
     main_keyboard, museum_keyboard, halls_keyboard, items_keyboard,
     navigation_keyboard, back_keyboard, quiz_answer_keyboard,
     quiz_result_keyboard, quiz_result_keyboard_continue, favorites_keyboard,
-    how_keyboard, info_keyboard, results_keyboard, map_items_keyboard,
-    history_keyboard, countries_keyboard, filters_keyboard, hall_filter_keyboard,
+    how_keyboard, info_keyboard, results_keyboard,
+    history_keyboard, filters_keyboard, hall_filter_keyboard,
     period_filter_keyboard, hall_items_keyboard, relabel_favorite, team_keyboard,
     ITEMS_PER_PAGE,
 )
@@ -95,7 +95,7 @@ QUIZ = [
 ]
 
 
-# Страны на карте изобретений: (флаг, часть света).
+# Страны изобретений для фильтра поиска: (флаг, часть света).
 COUNTRY_INFO = {
     "Россия": ("🇷🇺", "Евразия"),
     "Казахстан": ("🇰🇿", "Евразия"),
@@ -107,7 +107,6 @@ COUNTRY_INFO = {
     "Великобритания": ("🇬🇧", "Евразия"),
     "США": ("🇺🇸", "Северная Америка"),
 }
-CONTINENTS = [("Евразия", "🌍"), ("Северная Америка", "🌎")]
 PERIOD_ORDER = ["IX век", "X век", "XI век", "XI–XV века", "XIV век", "XVI век", "XVIII век", "XIX век", "XX век", "XXI век"]
 MONTH_NAMES = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля",
                "августа", "сентября", "октября", "ноября", "декабря"]
@@ -187,7 +186,7 @@ def load_history():
 
 HISTORY = load_history()
 
-# Страны карты: сначала те, где больше изобретений.
+# Страны для фильтра: сначала те, где больше изобретений.
 _country_counts = Counter(c for item in INVENTIONS for c in item["map_countries"])
 COUNTRIES = [c for c, _ in sorted(_country_counts.items(), key=lambda pair: (-pair[1], pair[0]))]
 COUNTRY_LABELS = {c: f"{COUNTRY_INFO[c][0]} {c}" for c in COUNTRIES}
@@ -395,7 +394,7 @@ def main_menu_text():
 DEEP_LINKS = {
     "museum": "museum", "halls": "halls", "catalog": "catalog",
     "favorites": "favorites", "stats": "stats", "today": "history:today",
-    "map": "map", "search": "search", "quiz": "quiz:start",
+    "search": "search", "quiz": "quiz:start",
     "feedback": "feedback", "team": "team",
     **{f"hall{n}": f"hall:{n}" for n in HALLS},
 }
@@ -427,7 +426,7 @@ async def open_deep_link(message: Message, state: FSMContext, data: str):
     handlers = {
         "museum": enter_museum, "halls": show_halls, "catalog": show_catalog,
         "favorites": show_favorites, "stats": show_stats, "history:today": this_day_in_history,
-        "map": show_map, "search": begin_search, "quiz:start": start_quiz,
+        "search": begin_search, "quiz:start": start_quiz,
         "feedback": begin_feedback, "team": project_team,
     }
     if data.startswith("hall:"):
@@ -457,7 +456,7 @@ async def start(message: Message, state: FSMContext, command: CommandObject | No
 async def help_command(message: Message):
     await message.answer(
         "Кнопки под сообщениями ведут по музею: залы и каталог, избранное, личная "
-        "статистика, «Этот день в истории», карта изобретений, поиск с фильтрами, "
+        "статистика, «Этот день в истории», поиск с фильтрами, "
         "викторина и отзывы.\n\n"
         "/start — главное меню\n/help — эта подсказка",
         reply_markup=main_keyboard(),
@@ -612,10 +611,6 @@ async def build_list(key: str, state: FSMContext, user_id: int, page: int = 0):
             )
         text = f"⭐ Избранное\n\nСохранено: {len(items)} {exhibits_word(len(items))}. Нажмите, чтобы открыть:"
         markup = favorites_keyboard(items, page)
-    elif kind == "country" and value in COUNTRY_INFO:
-        items = sorted((i for i in INVENTIONS if value in i["map_countries"]), key=lambda i: i["name"])
-        text = f"{COUNTRY_INFO[value][0]} {value}\n\n{len(items)} {exhibits_word(len(items))} связано с этим местом. Выберите:"
-        markup = map_items_keyboard(items, value, page)
     elif kind == "res":
         data = await state.get_data()
         filters, query = read_filters(data), data.get("f_query")
@@ -868,42 +863,6 @@ async def this_day_in_history(callback: CallbackQuery, state: FSMContext):
         callback.message, text, reply_markup=history_keyboard([BY_ID[i] for i in related])
     )
     await callback.answer()
-
-
-# ------------------------------------------------------------------ Invention map
-def build_map_text() -> str:
-    counts = Counter(c for item in INVENTIONS for c in item["map_countries"])
-    lines = ["🗺 Карта изобретений", "", "Где появились наши изобретения? Нажмите на страну, чтобы увидеть её экспонаты.", ""]
-    for continent, icon in CONTINENTS:
-        members = [c for c in COUNTRIES if COUNTRY_INFO[c][1] == continent]
-        if members:
-            lines.append(f"{icon} {continent}")
-            lines.extend(f"{COUNTRY_INFO[c][0]} {c} — {counts[c]}" for c in members)
-            lines.append("")
-    lines.append("Страной считается место, где изобретение создали или впервые применили. "
-                 "Многие русские изобретатели работали за границей.")
-    if WEBAPP_URL:
-        lines.append("")
-        lines.append("🗺 Откройте интерактивную карту, чтобы выбирать страны прямо на карте мира и сравнивать их по векам.")
-    return "\n".join(lines)
-
-
-@router.callback_query(F.data == "map")
-async def show_map(callback: CallbackQuery):
-    await show_text(
-        callback.message, build_map_text(),
-        reply_markup=countries_keyboard(COUNTRIES, COUNTRY_LABELS, webapp_url=WEBAPP_URL),
-    )
-    await callback.answer()
-
-
-@router.callback_query(F.data.startswith("map:country:"))
-async def show_map_country(callback: CallbackQuery, state: FSMContext):
-    country = callback.data.split(":", 2)[2]
-    if country not in COUNTRY_INFO:
-        await callback.answer("Страна не найдена.", show_alert=True)
-        return
-    await open_list(callback, state, f"country:{country}")
 
 
 # ------------------------------------------------------------------ Search & filters

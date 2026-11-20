@@ -21,7 +21,6 @@ import { initModal, vitrineOpen } from './modal';
 import { mountHome } from './views/home';
 import { mountHalls } from './views/halls';
 import { mountExplorer } from './views/explorer';
-import { mountMap } from './views/map';
 import { mountToday } from './views/today';
 import { mountQuiz } from './views/quiz';
 import { mountFavorites } from './views/favorites';
@@ -38,7 +37,6 @@ const ROUTES: Record<string, Mount> = {
   '': mountHome,
   halls: mountHalls,
   catalog: mountExplorer,
-  map: mountMap,
   today: mountToday,
   quiz: mountQuiz,
   favorites: mountFavorites,
@@ -49,8 +47,8 @@ const ROUTES: Record<string, Mount> = {
 };
 
 const TAB_OF: Record<string, string> = {
-  '': 'home', halls: 'halls', catalog: 'catalog', map: 'map',
-  today: 'more', quiz: 'more', favorites: 'more', stats: 'more',
+  '': 'home', halls: 'halls', catalog: 'catalog', quiz: 'quiz',
+  today: 'more', favorites: 'more', stats: 'more',
   feedback: 'more', team: 'more', more: 'more',
 };
 
@@ -129,7 +127,7 @@ function applyStartParam(): void {
   if (!sp) return;
   const map: Record<string, string> = {
     museum: '', halls: 'halls', catalog: 'catalog', catalogue: 'catalog', favorites: 'favorites',
-    stats: 'stats', today: 'today', map: 'map', search: 'catalog', quiz: 'quiz',
+    stats: 'stats', today: 'today', search: 'catalog', quiz: 'quiz',
     feedback: 'feedback', team: 'team',
   };
   let target = map[sp];

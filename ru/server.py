@@ -457,10 +457,7 @@ async def set_bot_profile(bot: Bot) -> None:
         await bot.set_my_description(
             "Музей изобретений русских людей: образовательный проект Ломоносовской школы-пансиона. "
             f"{len(museum.INVENTIONS)} {museum.exhibits_word(len(museum.INVENTIONS))} в четырёх залах, от глаголицы до графена. "
-            "Викторина, карта, «Этот день в истории» и избранное. Нажмите «Запустить»."
-        )
-        await bot.set_my_short_description(
-            "Изобретения и открытия, связанные с историей России. Часть экосистемы World of Inventions."
+            "Викторина, «Этот день в истории» и избранное. Нажмите «Запустить»."
         )
     except Exception as exc:
         log.warning("Could not update the RU bot profile: %s", exc)
@@ -476,6 +473,12 @@ async def on_startup(app: web.Application) -> None:
         await bot.set_webhook(f"{base}{PREFIX}{WEBHOOK_PATH}", secret_token=WEBHOOK_SECRET, drop_pending_updates=False)
         await set_menu_button(bot, base)
         await set_bot_profile(bot)
+        from branding import RU_AVATAR, RU_NAME, apply_branding
+        await apply_branding(
+            bot, RU_NAME,
+            "Изобретения и открытия из истории России. Соседний музей на английском: @worldofinventions_app",
+            RU_AVATAR,
+        )
         log.info("RU museum webhook: %s%s%s", base, PREFIX, WEBHOOK_PATH)
     else:
         dispatcher = build_dispatcher()

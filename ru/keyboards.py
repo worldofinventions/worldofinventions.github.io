@@ -28,7 +28,7 @@ def nav_row() -> list:
 
 def ecosystem_row() -> list:
     """Переход в соседний музей экосистемы: World of Inventions (на английском)."""
-    return [InlineKeyboardButton(text="🌍 World of Inventions (English)", url=WORLD_BOT_URL)]
+    return [InlineKeyboardButton(text="🌍 World of Inventions · Global (English)", url=WORLD_BOT_URL)]
 
 
 # ---------------------------------------------------------------- menus
@@ -36,8 +36,8 @@ def main_keyboard() -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(inline_keyboard=[
         [btn("🏛 Войти в музей", "museum")],
         [btn("⭐ Избранное", "favorites"), btn("📊 Статистика", "stats")],
-        [btn("📅 Этот день", "history:today"), btn("🗺 Карта", "map")],
-        [btn("🔎 Поиск", "search"), btn("🧠 Викторина", "quiz:start")],
+        [btn("📅 Этот день", "history:today"), btn("🔎 Поиск", "search")],
+        [btn("🧠 Викторина", "quiz:start")],
         [btn("💬 Отзыв", "feedback"), btn("👥 Команда", "team")],
         ecosystem_row(),
     ])
@@ -47,8 +47,8 @@ def museum_keyboard() -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(inline_keyboard=[
         [btn("🏛 Залы музея", "halls")],
         [btn("📚 Каталог", "catalog"), btn("🔎 Поиск", "search")],
-        [btn("⭐ Избранное", "favorites"), btn("🗺 Карта", "map")],
-        [btn("📊 Статистика", "stats"), btn("⬅️ Главное меню", "home")],
+        [btn("⭐ Избранное", "favorites"), btn("📊 Статистика", "stats")],
+        [btn("⬅️ Главное меню", "home")],
     ])
 
 
@@ -117,14 +117,6 @@ def results_keyboard(items, page: int = 0) -> InlineKeyboardMarkup:
     return paged_items_keyboard(
         items, "res", page,
         footer=[[btn("🔎 Изменить фильтры", "search")], nav_row()],
-    )
-
-
-def map_items_keyboard(items, country: str, page: int = 0) -> InlineKeyboardMarkup:
-    """Экспонаты одной страны на карте изобретений."""
-    return paged_items_keyboard(
-        items, f"country:{country}", page,
-        footer=[[btn("🗺 К карте", "map"), btn("🏠 Главное меню", "home")]],
     )
 
 
@@ -249,27 +241,7 @@ def quiz_result_keyboard_continue(next_index: int) -> InlineKeyboardMarkup:
     ])
 
 
-# ---------------------------------------------------------------- map and filters
-def countries_keyboard(
-    countries: list[str],
-    labels: dict | None = None,
-    webapp_url: str | None = None,
-) -> InlineKeyboardMarkup:
-    """Кнопки стран текстовой карты. С `webapp_url` первый ряд открывает
-    интерактивную карту как Telegram Mini App."""
-    labels = labels or {}
-    buttons = [
-        btn(labels.get(country, country), f"map:country:{country}")
-        for country in countries
-    ]
-    rows = []
-    if webapp_url:
-        rows.append([InlineKeyboardButton(text="🗺 Интерактивная карта", web_app=WebAppInfo(url=webapp_url))])
-    rows.extend(chunk(buttons, 2))
-    rows.append(nav_row())
-    return InlineKeyboardMarkup(inline_keyboard=rows)
-
-
+# ---------------------------------------------------------------- filters
 def filters_keyboard(
     countries: list[str],
     halls: dict,

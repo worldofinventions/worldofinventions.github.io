@@ -41,10 +41,9 @@ export function mountMore(root: HTMLElement): void {
     h('div.wrap', {},
       h('p.eyebrow', {}, 'Остальное'),
       h('h2', {}, '☰ Ещё'),
-      h('p.lead', {}, 'Остальные разделы музея: ваша коллекция, успехи, календарь, викторина и связь с командой.'),
+      h('p.lead', {}, 'Ваша коллекция, успехи, календарь и связь с командой.'),
       h('div.tiles', {},
         tile('#/today', '📅', 'Этот день в истории', 'изобретения и открытия по датам'),
-        tile('#/quiz', '🧠', 'Викторина', '10 вопросов в раунде'),
         tile('#/favorites', '⭐', 'Избранное', `сохранено: ${state.favorites.size}`),
         tile('#/stats', '📊', 'Статистика', 'ваши успехи'),
         tile('#/feedback', '💬', 'Отзыв', 'идеи и исправления'),
@@ -60,5 +59,5 @@ function worldTile(): HTMLElement {
     onclick: (e: Event) => { if (tg?.openTelegramLink) { e.preventDefault(); tg.openTelegramLink(WORLD_BOT_URL); } },
   },
     h('span.tile__ico', { 'aria-hidden': 'true' }, '🌍'),
-    h('span.tile__text', {}, h('b', {}, 'World of Inventions'), h('small', {}, 'изобретения мира, на английском')));
+    h('span.tile__text', {}, h('b', { lang: 'en' }, 'World of Inventions · Global'), h('small', {}, 'соседний музей: изобретения мира, на английском')));
 }

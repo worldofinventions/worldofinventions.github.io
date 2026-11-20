@@ -127,3 +127,7 @@
   #view h2 { font-size: clamp(1.8rem, 6.4vw, 2.6rem); }
   .tiles { grid-template-columns: 1fr 1fr; }
 }
+
+/* "send the full-screen map to the chat" under the atlas */
+.map-send { margin-top: var(--s-6); padding-top: var(--s-5); border-top: 1px solid var(--line); }
+.map-send__note { margin-top: var(--s-3); color: var(--ink-2); font-size: var(--fs-1); max-width: 52ch; }

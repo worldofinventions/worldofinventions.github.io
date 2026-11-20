@@ -60,5 +60,5 @@ function sisterTile(): HTMLElement {
     onclick: (e: Event) => { if (tg?.openTelegramLink) { e.preventDefault(); tg.openTelegramLink(url); } },
   },
     h('span.tile__ico', { 'aria-hidden': 'true' }, '🇷🇺'),
-    h('span.tile__text', {}, h('b', {}, 'Музей изобретений русских людей'), h('small', { lang: 'en' }, 'the sister museum, in Russian')));
+    h('span.tile__text', {}, h('b', {}, 'Мир изобретений · Россия'), h('small', { lang: 'en' }, 'the sister museum: Russian inventions, in Russian')));
 }

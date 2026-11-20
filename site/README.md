@@ -38,7 +38,7 @@ All of them live in one file, [`src/config.ts`](src/config.ts).
 ### 1. The bot link
 
 ```ts
-export const BOT_URL = 'https://t.me/jdjsbehenbot';
+export const BOT_URL = 'https://t.me/worldofinventions_app';
 ```
 
 Every "Open in Telegram" button reads this constant, including the ones in the

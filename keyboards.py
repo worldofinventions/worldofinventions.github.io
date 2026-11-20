@@ -40,7 +40,7 @@ def main_keyboard() -> InlineKeyboardMarkup:
 
 def ecosystem_row() -> list:
     """The sister museum of the ecosystem: Russian inventions, in Russian."""
-    return [InlineKeyboardButton(text="🇷🇺 Museum of Russian Inventions (in Russian)", url=RU_BOT_URL)]
+    return [InlineKeyboardButton(text="🇷🇺 Мир изобретений · Россия (in Russian)", url=RU_BOT_URL)]
 
 
 def museum_keyboard() -> InlineKeyboardMarkup:

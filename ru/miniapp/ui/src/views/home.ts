@@ -29,7 +29,6 @@ export function mountHome(root: HTMLElement): void {
       h('div.tiles', {},
         tile('#/halls', '🏺', 'Залы музея', `${halls} зала на одной линии времени`),
         tile('#/catalog', '📚', 'Каталог', 'поиск и фильтры'),
-        tile('#/map', '🗺', 'Карта изобретений', 'по странам'),
         tile('#/today', '📅', 'Этот день в истории', 'изобретения и открытия по датам'),
         tile('#/quiz', '🧠', 'Викторина', '10 вопросов в раунде'),
         tile('#/favorites', '⭐', 'Избранное', `сохранено: ${state.favorites.size}`),
