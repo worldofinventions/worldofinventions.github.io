@@ -95,7 +95,7 @@ QUIZ = [
 ]
 
 
-# Страны изобретений для фильтра поиска: (флаг, часть света).
+# Страны изобретений: (флаг, часть света).
 COUNTRY_INFO = {
     "Россия": ("🇷🇺", "Евразия"),
     "Казахстан": ("🇰🇿", "Евразия"),
@@ -186,7 +186,7 @@ def load_history():
 
 HISTORY = load_history()
 
-# Страны для фильтра: сначала те, где больше изобретений.
+# Страны изобретений, сначала те, где их больше.
 _country_counts = Counter(c for item in INVENTIONS for c in item["map_countries"])
 COUNTRIES = [c for c, _ in sorted(_country_counts.items(), key=lambda pair: (-pair[1], pair[0]))]
 COUNTRY_LABELS = {c: f"{COUNTRY_INFO[c][0]} {c}" for c in COUNTRIES}
@@ -867,14 +867,13 @@ async def this_day_in_history(callback: CallbackQuery, state: FSMContext):
 
 # ------------------------------------------------------------------ Search & filters
 def read_filters(data: dict) -> dict:
-    return {"country": data.get("f_country"), "hall": data.get("f_hall"), "period": data.get("f_period")}
+    return {"hall": data.get("f_hall"), "period": data.get("f_period")}
 
 
 def apply_filters(items, filters: dict):
     return [
         item for item in items
-        if (not filters["country"] or filters["country"] in item["map_countries"])
-        and (not filters["hall"] or str(item["hall"]) == filters["hall"])
+        if (not filters["hall"] or str(item["hall"]) == filters["hall"])
         and (not filters["period"] or item["period"] == filters["period"])
     ]
 
@@ -895,10 +894,9 @@ def search_matches(filters: dict, query: str | None):
 
 
 def describe_filters(filters: dict) -> str:
-    country = COUNTRY_LABELS.get(filters["country"], "все")
     hall = f"Зал {filters['hall']} · {HALLS[filters['hall']]['title']}" if filters["hall"] else "все"
     period = filters["period"] or "все"
-    return f"Страна: {country}\nЗал: {hall}\nПериод: {period}"
+    return f"Зал: {hall}\nПериод: {period}"
 
 
 def filters_active(filters: dict) -> bool:
@@ -929,7 +927,7 @@ async def render_filters(message: Message, state: FSMContext):
         f"Подходит экспонатов: {len(matches)}\n\n"
         "Выберите фильтры и нажмите «Показать» или напишите слово "
         "(изобретение, изобретатель, страна, год…), чтобы искать внутри фильтров.",
-        reply_markup=filters_keyboard(COUNTRIES, HALLS, len(matches), COUNTRY_LABELS, active=filters),
+        reply_markup=filters_keyboard(HALLS, len(matches), active=filters),
     )
 
 
@@ -942,7 +940,7 @@ async def begin_search(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data == "filter:reset")
 async def reset_filters(callback: CallbackQuery, state: FSMContext):
-    await state.update_data(f_country=None, f_hall=None, f_period=None, f_query=None)
+    await state.update_data(f_hall=None, f_period=None, f_query=None)
     await render_filters(callback.message, state)
     await callback.answer("Фильтры сброшены")
 
@@ -978,9 +976,7 @@ async def choose_filter(callback: CallbackQuery, state: FSMContext):
         await callback.answer()
         return
 
-    if kind == "country" and (value == "all" or value in COUNTRY_INFO):
-        await state.update_data(f_country=None if value == "all" else value)
-    elif kind == "hall" and (value == "all" or value in HALLS):
+    if kind == "hall" and (value == "all" or value in HALLS):
         await state.update_data(f_hall=None if value == "all" else value)
     elif kind == "period" and (value == "all" or value in PERIODS):
         await state.update_data(f_period=None if value == "all" else value)

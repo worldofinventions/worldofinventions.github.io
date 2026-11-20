@@ -1,5 +1,5 @@
 // The card catalogue: the site's explorer, with the bot's own search and filter rules.
-import { INVENTIONS, HALLS, HALL_IDS, COUNTRIES, PERIODS, countryLabel } from '../data';
+import { INVENTIONS, HALLS, HALL_IDS, PERIODS } from '../data';
 import { searchMatches, exhibitsWord, type Filters } from '../bot';
 import { h } from '../ui';
 import { exhibitCard } from './card';
@@ -15,7 +15,6 @@ export function mountExplorer(root: HTMLElement): void {
     return { el, wrap: h('label.field', { for: `f-${key}` }, h('span', {}, label), el) };
   };
   const hall = select('Зал', 'Все залы', 'hall', HALL_IDS.map((id) => [id, `Зал ${id} · ${HALLS[id].title}`]));
-  const country = select('Страна', 'Все страны', 'country', COUNTRIES.map((c) => [c, countryLabel(c)]));
   const period = select('Период', 'Все периоды', 'period', PERIODS.map((p) => [p, p]));
   const search = h('input', { id: 'f-q', type: 'search', placeholder: 'паровоз, Попов, 1957…', autocomplete: 'off', spellcheck: 'false', maxlength: 60 });
   search.addEventListener('input', () => { state.q = search.value; update(); });
@@ -34,7 +33,7 @@ export function mountExplorer(root: HTMLElement): void {
   function clear(): void {
     Object.assign(state, { q: '', hall: null, country: null, period: null });
     search.value = '';
-    [hall, country, period].forEach((f) => { f.el.value = ''; });
+    [hall, period].forEach((f) => { f.el.value = ''; });
     update();
     search.focus();
   }
@@ -55,7 +54,7 @@ export function mountExplorer(root: HTMLElement): void {
   holder.append(
     h('form.explorer__bar', { role: 'search', onsubmit: (e: Event) => e.preventDefault() },
       h('label.field.field--search', { for: 'f-q' }, h('span', {}, 'Слово'), search),
-      hall.wrap, country.wrap, period.wrap),
+      hall.wrap, period.wrap),
     h('div.explorer__status', {}, count, reset),
     list, empty);
 

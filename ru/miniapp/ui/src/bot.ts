@@ -3,8 +3,8 @@
 // Source of truth: handlers.py and keyboards.py. If a text changes there,
 // change it here too (static menus, HALLS, QUIZ etc. are extracted automatically).
 import {
-  BOT, MUSEUM_NAME, HALLS, HALL_IDS, INVENTIONS, HISTORY, COUNTRIES,
-  MONTH_NAMES, PERIODS, countryLabel, hallItems,
+  BOT, MUSEUM_NAME, HALLS, HALL_IDS, INVENTIONS, HISTORY,
+  MONTH_NAMES, PERIODS, hallItems,
   type Exhibit, type HistoryEvent, type Keyboard, type Btn, type QuizQuestion,
 } from './data';
 
@@ -237,15 +237,11 @@ export function searchMatches(f: Filters, query: string | null): Exhibit[] {
   });
 }
 export const describeFilters = (f: Filters): string =>
-  `Страна: ${f.country ? countryLabel(f.country) : 'все'}\n` +
   `Зал: ${f.hall ? `Зал ${f.hall} · ${HALLS[f.hall].title}` : 'все'}\n` +
   `Период: ${f.period || 'все'}`;
 export function filtersScreen(f: Filters): Screen {
   const matches = applyFilters(INVENTIONS, f);
   const rows: Keyboard = [[btn(`📋 Показать (${matches.length})`, 'filter:results')]];
-  rows.push([btn(f.country ? '🌍 Все страны' : '✅ 🌍 Все страны', 'filter:country:all')]);
-  const countries = COUNTRIES.map((c) => btn(f.country === c ? `✅ ${countryLabel(c)}` : countryLabel(c), `filter:country:${c}`));
-  for (let i = 0; i < countries.length; i += 2) rows.push(countries.slice(i, i + 2));
   rows.push([btn(f.hall ? '✅ 🏛 Зал' : '🏛 Зал', 'filter:hall:menu'), btn(f.period ? '✅ 📅 Период' : '📅 Период', 'filter:period:menu')]);
   rows.push([btn('🔄 Сбросить', 'filter:reset'), NAV_ROW[0]]);
   return {

@@ -243,31 +243,17 @@ def quiz_result_keyboard_continue(next_index: int) -> InlineKeyboardMarkup:
 
 # ---------------------------------------------------------------- filters
 def filters_keyboard(
-    countries: list[str],
     halls: dict,
     result_count: int | None = None,
-    labels: dict | None = None,
     active: dict | None = None,
 ) -> InlineKeyboardMarkup:
-    """Экран фильтров: кнопка результатов, страны в две колонки, меню залов и периодов.
-    `active` ({'country','hall','period'}) отмечает выбранные фильтры значком ✅."""
-    labels = labels or {}
+    """Экран фильтров: кнопка результатов, меню залов и периодов.
+    `active` ({'hall','period'}) отмечает выбранные фильтры значком ✅."""
     active = active or {}
     rows = []
 
     if result_count is not None:
         rows.append([btn(f"📋 Показать ({result_count})", "filter:results")])
-
-    all_label = "🌍 Все страны" if active.get("country") else "✅ 🌍 Все страны"
-    rows.append([btn(all_label, "filter:country:all")])
-
-    country_buttons = []
-    for country in countries:
-        label = labels.get(country, f"🌍 {country}")
-        if active.get("country") == country:
-            label = f"✅ {label}"
-        country_buttons.append(btn(label, f"filter:country:{country}"))
-    rows.extend(chunk(country_buttons, 2))
 
     hall_label = "✅ 🏛 Зал" if active.get("hall") else "🏛 Зал"
     period_label = "✅ 📅 Период" if active.get("period") else "📅 Период"
